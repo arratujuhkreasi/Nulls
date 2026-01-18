@@ -5,7 +5,7 @@ export async function GET(request: Request) {
     // The `request` object contains the query parameters (code)
     const requestUrl = new URL(request.url);
     const code = requestUrl.searchParams.get("code");
-    const next = requestUrl.searchParams.get("next") || "/";
+    const next = requestUrl.searchParams.get("next") || "/dashboard";
 
     if (code) {
         const supabase = await createClient();

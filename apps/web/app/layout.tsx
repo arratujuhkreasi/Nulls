@@ -21,22 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} ${inter.variable} antialiased bg-[#f8f9fa] text-gray-900 font-sans`}
+        className={`${outfit.variable} ${inter.variable} antialiased bg-white text-gray-900 font-sans`}
       >
-        <div className="min-h-screen flex">
-          {/* Sidebar */}
-          <Sidebar />
-
-          {/* Main Content Wrapper */}
-          <main className="flex-1 ml-20 xl:ml-24 transition-all min-w-0">
-            <div className="max-w-[1600px] mx-auto">
-              <Header />
-              <div className="px-6 md:px-8 pb-8">
-                {children}
-              </div>
-            </div>
-          </main>
-        </div>
+        {children}
       </body>
     </html>
   );

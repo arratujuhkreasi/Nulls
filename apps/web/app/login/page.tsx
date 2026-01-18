@@ -24,7 +24,7 @@ export default function LoginPage({
             return redirect("/login?message=Could not authenticate user");
         }
 
-        return redirect("/");
+        return redirect("/dashboard");
     };
 
     const signUp = async (formData: FormData) => {
@@ -38,7 +38,7 @@ export default function LoginPage({
             email,
             password,
             options: {
-                emailRedirectTo: `${origin}/auth/callback`,
+                emailRedirectTo: `${origin}/auth/callback?next=/dashboard`,
             },
         });
 
