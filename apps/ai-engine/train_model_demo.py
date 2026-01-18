@@ -45,14 +45,14 @@ def train_demo_model():
     try:
         response = requests.post(f"{API_URL}/train", json=payload)
         if response.status_code == 200:
-            print("\n✅ Training Successful!")
+            print("\n[SUCCESS] Training Successful!")
             print(json.dumps(response.json(), indent=2))
         else:
-            print(f"\n❌ Training Failed: {response.status_code}")
+            print(f"\n[ERROR] Training Failed: {response.status_code}")
             print(response.text)
             
     except Exception as e:
-        print(f"\n❌ Connection Error: {e}")
+        print(f"\n[ERROR] Connection Error: {e}")
         print("Make sure the AI Engine is running using 'python main.py'")
 
 if __name__ == "__main__":

@@ -4,6 +4,10 @@ from typing import List, Dict, Any, Union
 # Import from updated forecasting service
 from services.forecasting import build_and_train_model, predict_recursive
 from services.chat import process_chat_message
+from services.marketing import generate_marketing_copy
+from dotenv import load_dotenv
+
+load_dotenv() # Load environment variables from .env
 
 app = FastAPI(title="SaaS ERP AI Engine (Production Ready)")
 
@@ -22,6 +26,12 @@ class PredictionRequest(BaseModel):
 class ChatMessage(BaseModel):
     from_number: str
     message_body: str
+
+class MarketingRequest(BaseModel):
+    product_name: str
+    platform: str
+    tone: str
+    description: str = ""
 
 @app.get("/")
 def read_root():
@@ -64,6 +74,22 @@ def chat_webhook(payload: ChatMessage):
     try:
         result = process_chat_message(payload.dict())
         return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/marketing/generate")
+def generate_marketing(payload: MarketingRequest):
+    """
+    Generate Marketing Copy.
+    """
+    try:
+        copy = generate_marketing_copy(
+            payload.product_name,
+            payload.platform,
+            payload.tone,
+            payload.description
+        )
+        return {"copy": copy}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

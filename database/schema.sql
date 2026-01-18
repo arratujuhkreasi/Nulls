@@ -129,3 +129,34 @@ CREATE POLICY "Users can insert their own transaction items"
 CREATE POLICY "Users can update their own transaction items" 
   ON transaction_items FOR UPDATE 
   USING (auth.uid() = user_id);
+
+-- 5. EXPENSES TABLE
+CREATE TABLE expenses (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) NOT NULL,
+  category TEXT NOT NULL, -- e.g. Rent, Utilities, Wages, Marketing
+  amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+  description TEXT,
+  date DATE DEFAULT CURRENT_DATE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Turn on RLS
+ALTER TABLE expenses ENABLE ROW LEVEL SECURITY;
+
+-- Policies for expenses
+CREATE POLICY "Users can view their own expenses" 
+  ON expenses FOR SELECT 
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can insert their own expenses" 
+  ON expenses FOR INSERT 
+  WITH CHECK (auth.uid() = user_id);
+
+CREATE POLICY "Users can update their own expenses" 
+  ON expenses FOR UPDATE 
+  USING (auth.uid() = user_id);
+
+CREATE POLICY "Users can delete their own expenses" 
+  ON expenses FOR DELETE 
+  USING (auth.uid() = user_id);
