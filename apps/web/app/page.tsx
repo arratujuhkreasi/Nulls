@@ -148,7 +148,7 @@ export default function LandingPage() {
             </div>
             <span className="text-gray-900">Arland Jova</span>
           </div>
-          <p className="text-gray-500 text-sm">© 2026 Arland Jova Inc. Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-gray-500 text-sm">© 2026 Arland Jova Inc. v2.0 (Odoo Style). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
     </div>
