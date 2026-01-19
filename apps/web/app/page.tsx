@@ -6,12 +6,12 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-700 overflow-x-hidden">
 
-      {/* Background Ambience */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-indigo-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob"></div>
-        <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-purple-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-4000"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+      {/* Background Ambience - Optimized */}
+      <div className="fixed inset-0 pointer-events-none transform-gpu">
+        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-indigo-100/30 rounded-full blur-3xl mix-blend-multiply md:animate-blob will-change-transform"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-purple-100/30 rounded-full blur-3xl mix-blend-multiply md:animate-blob animation-delay-2000 will-change-transform"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-blue-100/30 rounded-full blur-3xl mix-blend-multiply md:animate-blob animation-delay-4000 will-change-transform"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150 mix-blend-overlay"></div>
       </div>
 
       {/* Navbar */}
@@ -46,9 +46,9 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-6 z-10">
+      <section className="relative pt-32 md:pt-40 pb-20 px-6 z-10">
         <div className="max-w-5xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/50 border border-indigo-100/50 rounded-full mb-8 shadow-sm backdrop-blur-sm animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/50 border border-indigo-100/50 rounded-full mb-6 md:mb-8 shadow-sm backdrop-blur-sm animate-fade-in-up">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
@@ -56,40 +56,41 @@ export default function LandingPage() {
             <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-widest">SaaS ERP #1 Indonesia</span>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold text-slate-900 tracking-tight leading-[1] mb-8">
+          {/* Optimized Typography for Mobile */}
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-slate-900 tracking-tight leading-[1.1] md:leading-[1] mb-6 md:mb-8">
             Bisnis Jadi <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-500">Lebih Cerdas.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+          <p className="text-lg md:text-2xl text-slate-500 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed font-light">
             Platform all-in-one untuk mengelola Penjualan, Keuangan, dan Marketing.
             Ditenagai AI yang bekerja otomatis untuk Anda.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-24">
-            <Link href="/login" className="h-14 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full transition-all shadow-xl shadow-indigo-200 hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-lg">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-20 md:mb-24">
+            <Link href="/login" className="h-12 md:h-14 w-full md:w-auto px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full transition-all shadow-xl shadow-indigo-200 hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-lg">
               Mulai Sekarang
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/dashboard" className="h-14 px-8 bg-white text-slate-700 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-lg shadow-sm hover:shadow-md">
+            <Link href="/dashboard" className="h-12 md:h-14 w-full md:w-auto px-8 bg-white text-slate-700 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-lg shadow-sm hover:shadow-md">
               <span className="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs">▶</span>
               Lihat Demo
             </Link>
           </div>
 
           {/* Bento Grid Apps */}
-          <div id="apps" className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto text-left">
+          <div id="apps" className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto text-left">
 
             {/* Card: Penjualan (Large) */}
-            <Link href="/dashboard" className="group md:col-span-2 relative h-80 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
+            <Link href="/dashboard" className="group md:col-span-2 relative h-72 md:h-80 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 p-6 md:p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
               <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-50/50 to-transparent"></div>
               <div className="relative z-10 flex flex-col h-full justify-between">
                 <div>
                   <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
                     <BarChart3 className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Penjualan & CRM</h3>
-                  <p className="text-slate-500 max-w-xs">Pantau performa sales real-time dengan dashboard interaktif.</p>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">Penjualan & CRM</h3>
+                  <p className="text-slate-500 max-w-xs text-sm md:text-base">Pantau performa sales real-time dengan dashboard interaktif.</p>
                 </div>
                 <div className="flex items-center gap-2 text-blue-600 font-bold group-hover:gap-4 transition-all">
                   Buka Dashboard <ArrowRight className="w-4 h-4" />
@@ -108,7 +109,7 @@ export default function LandingPage() {
             </Link>
 
             {/* Card: Marketing AI */}
-            <Link href="/marketing" className="group relative h-80 bg-slate-900 rounded-[2.5rem] shadow-xl shadow-slate-300 p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
+            <Link href="/marketing" className="group relative h-72 md:h-80 bg-slate-900 rounded-[2rem] md:rounded-[2.5rem] shadow-xl shadow-slate-300 p-6 md:p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
               <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-gradient-to-br from-indigo-500/30 via-purple-500/30 to-pink-500/30 animate-spin-slow"></div>
 
@@ -117,7 +118,7 @@ export default function LandingPage() {
                   <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
                     <Sparkles className="w-6 h-6" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">AI Marketing</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">AI Marketing</h3>
                   <p className="text-slate-300 text-sm">Buat konten viral otomatis dengan AI Generator.</p>
                 </div>
                 <div className="w-full bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 mt-4">
@@ -133,12 +134,12 @@ export default function LandingPage() {
             </Link>
 
             {/* Card: Keuangan */}
-            <Link href="/finance" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+            <Link href="/finance" className="group h-64 md:h-72 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-6 md:p-8 flex flex-col justify-between hover:shadow-xl transition-all">
               <div>
                 <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-4 group-hover:scale-110 transition-transform">
                   <PieChart className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">Keuangan</h3>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">Keuangan</h3>
                 <p className="text-slate-500 text-sm">Laporan laba rugi otomatis & akurat.</p>
               </div>
               <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
@@ -147,12 +148,12 @@ export default function LandingPage() {
             </Link>
 
             {/* Card: Inventaris */}
-            <Link href="/inventory" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+            <Link href="/inventory" className="group h-64 md:h-72 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-6 md:p-8 flex flex-col justify-between hover:shadow-xl transition-all">
               <div>
                 <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:scale-110 transition-transform">
                   <Warehouse className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">Inventaris</h3>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">Inventaris</h3>
                 <p className="text-slate-500 text-sm">Pantau stok barang masuk & keluar.</p>
               </div>
               <div className="flex items-center gap-2 text-orange-600 font-bold text-sm">
@@ -161,12 +162,12 @@ export default function LandingPage() {
             </Link>
 
             {/* Card: Website Store */}
-            <Link href="/" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+            <Link href="/" className="group h-64 md:h-72 bg-white rounded-[2rem] md:rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-6 md:p-8 flex flex-col justify-between hover:shadow-xl transition-all">
               <div>
                 <div className="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 mb-4 group-hover:scale-110 transition-transform">
                   <Globe className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">Website Toko</h3>
+                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1">Website Toko</h3>
                 <p className="text-slate-500 text-sm">Website e-commerce instan untuk brand Anda.</p>
               </div>
               <div className="flex items-center gap-2 text-pink-600 font-bold text-sm">
@@ -180,7 +181,7 @@ export default function LandingPage() {
 
       {/* Feature Highlight */}
       <section id="features" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-8 md:p-20 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
             <div>
@@ -188,7 +189,7 @@ export default function LandingPage() {
                 <Zap className="w-3 h-3 fill-current" />
                 New Feature
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                 Marketing Otomatis <br />
                 <span className="text-indigo-600">Ditenagai AI.</span>
               </h2>
@@ -207,7 +208,7 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            <div className="relative">
+            <div className="relative hidden md:block">
               {/* Decorative Circle */}
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
 
@@ -249,7 +250,7 @@ export default function LandingPage() {
               className="h-10 w-auto object-contain"
             />
           </div>
-          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v3.1 (Integrated Logo). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v3.2 (Optimized). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
 
