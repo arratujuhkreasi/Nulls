@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, Boxes, BarChart3, Megaphone, Zap, Warehouse, Globe, CheckCircle2, Sparkles, PieChart } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, BarChart3, Megaphone, Zap, Warehouse, Globe, CheckCircle2, Sparkles, PieChart } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -17,12 +18,14 @@ export default function LandingPage() {
       <nav className="fixed w-full z-50 top-4 px-4">
         <div className="max-w-7xl mx-auto h-16 px-6 bg-white/70 backdrop-blur-xl border border-white/50 rounded-full shadow-sm flex items-center justify-between">
           <div className="flex items-center gap-2.5 font-bold text-xl tracking-tight">
-            <div className="w-9 h-9 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-              <Boxes className="w-5 h-5" />
-            </div>
-            <span className="flex flex-col leading-none">
-              <span className="text-slate-900">Nulls</span>
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Nulls Logo"
+              width={100}
+              height={32}
+              className="h-8 w-auto object-contain"
+              priority
+            />
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
@@ -238,12 +241,15 @@ export default function LandingPage() {
       <footer className="bg-white pt-20 pb-10 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="mb-8 flex items-center justify-center gap-2 font-bold text-2xl tracking-tight">
-            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
-              <Boxes className="w-5 h-5" />
-            </div>
-            <span className="text-slate-900">Nulls</span>
+            <Image
+              src="/logo.png"
+              alt="Nulls Logo"
+              width={100}
+              height={32}
+              className="h-10 w-auto object-contain"
+            />
           </div>
-          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v3.0 (Super Modern Light). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v3.1 (Integrated Logo). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
 
