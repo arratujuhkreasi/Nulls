@@ -16,7 +16,7 @@ export default function LandingPage() {
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <Link href="#features" className="hover:text-purple-600 transition-colors">Aplikasi</Link>
+            <Link href="#apps" className="hover:text-purple-600 transition-colors">Aplikasi</Link>
             <Link href="#pricing" className="hover:text-purple-600 transition-colors">Harga</Link>
             <Link href="#community" className="hover:text-purple-600 transition-colors">Komunitas</Link>
           </div>
@@ -64,27 +64,27 @@ export default function LandingPage() {
               Mulai Sekarang - Gratis
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="#demo" className="w-full md:w-auto px-8 py-4 bg-white text-gray-700 font-bold rounded-full border border-gray-200 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 text-lg">
+            <Link href="/dashboard" className="w-full md:w-auto px-8 py-4 bg-white text-gray-700 font-bold rounded-full border border-gray-200 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 text-lg">
               <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">▶</span>
               Lihat Demo
             </Link>
           </div>
 
           {/* Odoo-style App Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+          <div id="apps" className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {[
-              { name: "Penjualan", icon: BarChart3, color: "text-blue-600", bg: "bg-blue-50" },
-              { name: "Keuangan", icon: BarChart3, color: "text-green-600", bg: "bg-green-50" }, // Used Chart for Finance too
-              { name: "Inventaris", icon: Warehouse, color: "text-orange-600", bg: "bg-orange-50" },
-              { name: "Marketing AI", icon: Megaphone, color: "text-pink-600", bg: "bg-pink-50" },
-              { name: "Website", icon: Globe, color: "text-indigo-600", bg: "bg-indigo-50" },
+              { name: "Penjualan", icon: BarChart3, color: "text-blue-600", bg: "bg-blue-50", href: "/dashboard" },
+              { name: "Keuangan", icon: BarChart3, color: "text-green-600", bg: "bg-green-50", href: "/finance" },
+              { name: "Inventaris", icon: Warehouse, color: "text-orange-600", bg: "bg-orange-50", href: "/inventory" },
+              { name: "Marketing AI", icon: Megaphone, color: "text-pink-600", bg: "bg-pink-50", href: "/marketing" },
+              { name: "Website", icon: Globe, color: "text-indigo-600", bg: "bg-indigo-50", href: "/" },
             ].map((app, i) => (
-              <div key={i} className="group p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col items-center gap-4">
+              <Link key={i} href={app.href} className="group p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col items-center gap-4">
                 <div className={`w-16 h-16 ${app.bg} rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-300`}>
                   <app.icon className={`w-8 h-8 ${app.color}`} />
                 </div>
                 <span className="font-bold text-gray-700 group-hover:text-gray-900">{app.name}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function LandingPage() {
             </div>
             <span className="text-gray-900">Nulls</span>
           </div>
-          <p className="text-gray-500 text-sm">© 2026 Nulls Inc. v2.1 (Odoo Style). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-gray-500 text-sm">© 2026 Nulls Inc. v2.2 (Integrated). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
     </div>
