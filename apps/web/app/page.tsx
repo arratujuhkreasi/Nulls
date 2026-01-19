@@ -1,31 +1,41 @@
 import Link from "next/link";
-import { ArrowRight, Boxes, BarChart3, Megaphone, Zap, Warehouse, ShieldCheck, Globe, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Boxes, BarChart3, Megaphone, Zap, Warehouse, Globe, CheckCircle2, Sparkles, PieChart } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-purple-100 selection:text-purple-700">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-700 overflow-x-hidden">
+
+      {/* Background Ambience */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-indigo-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[80vw] h-[80vw] bg-purple-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-blue-100/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-4000"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay"></div>
+      </div>
 
       {/* Navbar */}
-      <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100/50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-2xl tracking-tighter">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-200">
-              <Boxes className="w-6 h-6" />
+      <nav className="fixed w-full z-50 top-4 px-4">
+        <div className="max-w-7xl mx-auto h-16 px-6 bg-white/70 backdrop-blur-xl border border-white/50 rounded-full shadow-sm flex items-center justify-between">
+          <div className="flex items-center gap-2.5 font-bold text-xl tracking-tight">
+            <div className="w-9 h-9 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+              <Boxes className="w-5 h-5" />
             </div>
-            <span className="bg-gradient-to-r from-purple-700 to-indigo-700 bg-clip-text text-transparent">Nulls</span>
+            <span className="flex flex-col leading-none">
+              <span className="text-slate-900">Nulls</span>
+            </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <Link href="#apps" className="hover:text-purple-600 transition-colors">Aplikasi</Link>
-            <Link href="#pricing" className="hover:text-purple-600 transition-colors">Harga</Link>
-            <Link href="#community" className="hover:text-purple-600 transition-colors">Komunitas</Link>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
+            <Link href="#apps" className="hover:text-indigo-600 transition-colors">Aplikasi</Link>
+            <Link href="#features" className="hover:text-indigo-600 transition-colors">Fitur AI</Link>
+            <Link href="#pricing" className="hover:text-indigo-600 transition-colors">Harga</Link>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link href="/login" className="text-sm font-medium text-gray-700 hover:text-purple-700 transition-colors">
+          <div className="flex items-center gap-3">
+            <Link href="/login" className="px-5 py-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">
               Masuk
             </Link>
-            <Link href="/login" className="px-5 py-2.5 bg-[#714B67] hover:bg-[#5e3d55] text-white text-sm font-bold rounded-full transition-all shadow-md shadow-purple-200 hover:shadow-lg active:scale-95">
+            <Link href="/login" className="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-full transition-all shadow-lg hover:shadow-xl active:scale-95">
               Coba Gratis
             </Link>
           </div>
@@ -33,105 +43,190 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-          <div className="absolute top-[10%] left-[-10%] w-[600px] h-[600px] bg-purple-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply animate-blob"></div>
-          <div className="absolute top-[10%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/50 rounded-full blur-3xl opacity-60 mix-blend-multiply animate-blob animation-delay-2000"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 border border-purple-100/50 rounded-full mb-8 animate-fade-in-up">
+      <section className="relative pt-40 pb-20 px-6 z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/50 border border-indigo-100/50 rounded-full mb-8 shadow-sm backdrop-blur-sm animate-fade-in-up">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            <span className="text-xs font-bold text-purple-700 uppercase tracking-wider">Software Bisnis #1 di Indonesia</span>
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-widest">SaaS ERP #1 Indonesia</span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto">
-            Satu Aplikasi untuk <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#714B67] to-indigo-600">Semua Kebutuhan Bisnis.</span>
+          <h1 className="text-6xl md:text-8xl font-bold text-slate-900 tracking-tight leading-[1] mb-8">
+            Bisnis Jadi <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-500">Lebih Cerdas.</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Kelola Keuangan, Inventaris, Penjualan, dan Marketing Otomatis dengan AI.
-            Semuanya terintegrasi dalam satu platform yang mudah digunakan.
+          <p className="text-xl md:text-2xl text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+            Platform all-in-one untuk mengelola Penjualan, Keuangan, dan Marketing.
+            Ditenagai AI yang bekerja otomatis untuk Anda.
           </p>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-20">
-            <Link href="/login" className="w-full md:w-auto px-8 py-4 bg-[#714B67] hover:bg-[#5e3d55] text-white font-bold rounded-full transition-all shadow-xl shadow-purple-200 hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-lg">
-              Mulai Sekarang - Gratis
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-24">
+            <Link href="/login" className="h-14 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full transition-all shadow-xl shadow-indigo-200 hover:shadow-2xl hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-lg">
+              Mulai Sekarang
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link href="/dashboard" className="w-full md:w-auto px-8 py-4 bg-white text-gray-700 font-bold rounded-full border border-gray-200 hover:bg-gray-50 transition-all flex items-center justify-center gap-2 text-lg">
-              <span className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">▶</span>
+            <Link href="/dashboard" className="h-14 px-8 bg-white text-slate-700 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all flex items-center justify-center gap-2 text-lg shadow-sm hover:shadow-md">
+              <span className="w-6 h-6 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs">▶</span>
               Lihat Demo
             </Link>
           </div>
 
-          {/* Odoo-style App Grid */}
-          <div id="apps" className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
-            {[
-              { name: "Penjualan", icon: BarChart3, color: "text-blue-600", bg: "bg-blue-50", href: "/dashboard" },
-              { name: "Keuangan", icon: BarChart3, color: "text-green-600", bg: "bg-green-50", href: "/finance" },
-              { name: "Inventaris", icon: Warehouse, color: "text-orange-600", bg: "bg-orange-50", href: "/inventory" },
-              { name: "Marketing AI", icon: Megaphone, color: "text-pink-600", bg: "bg-pink-50", href: "/marketing" },
-              { name: "Website", icon: Globe, color: "text-indigo-600", bg: "bg-indigo-50", href: "/" },
-            ].map((app, i) => (
-              <Link key={i} href={app.href} className="group p-6 bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col items-center gap-4">
-                <div className={`w-16 h-16 ${app.bg} rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 duration-300`}>
-                  <app.icon className={`w-8 h-8 ${app.color}`} />
+          {/* Bento Grid Apps */}
+          <div id="apps" className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto text-left">
+
+            {/* Card: Penjualan (Large) */}
+            <Link href="/dashboard" className="group md:col-span-2 relative h-80 bg-white rounded-[2.5rem] border border-slate-100 shadow-xl shadow-slate-200/50 p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
+              <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-bl from-blue-50/50 to-transparent"></div>
+              <div className="relative z-10 flex flex-col h-full justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-4 group-hover:scale-110 transition-transform">
+                    <BarChart3 className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Penjualan & CRM</h3>
+                  <p className="text-slate-500 max-w-xs">Pantau performa sales real-time dengan dashboard interaktif.</p>
                 </div>
-                <span className="font-bold text-gray-700 group-hover:text-gray-900">{app.name}</span>
-              </Link>
-            ))}
+                <div className="flex items-center gap-2 text-blue-600 font-bold group-hover:gap-4 transition-all">
+                  Buka Dashboard <ArrowRight className="w-4 h-4" />
+                </div>
+              </div>
+              {/* Decorative Chart */}
+              <div className="absolute bottom-[-10%] right-[-5%] w-[60%] h-[70%] bg-white rounded-t-2xl shadow-lg border border-slate-100 p-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="flex items-end gap-2 h-full pb-4 px-2">
+                  <div className="w-1/5 h-[40%] bg-blue-100 rounded-t-md"></div>
+                  <div className="w-1/5 h-[60%] bg-blue-200 rounded-t-md"></div>
+                  <div className="w-1/5 h-[80%] bg-blue-500 rounded-t-md"></div>
+                  <div className="w-1/5 h-[50%] bg-blue-200 rounded-t-md"></div>
+                  <div className="w-1/5 h-[90%] bg-indigo-500 rounded-t-md"></div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card: Marketing AI */}
+            <Link href="/marketing" className="group relative h-80 bg-slate-900 rounded-[2.5rem] shadow-xl shadow-slate-300 p-8 overflow-hidden hover:shadow-2xl transition-all duration-500">
+              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+              <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-gradient-to-br from-indigo-500/30 via-purple-500/30 to-pink-500/30 animate-spin-slow"></div>
+
+              <div className="relative z-10 h-full flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">AI Marketing</h3>
+                  <p className="text-slate-300 text-sm">Buat konten viral otomatis dengan AI Generator.</p>
+                </div>
+                <div className="w-full bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/10 mt-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                    <span className="text-xs text-slate-300">AI Generating...</span>
+                  </div>
+                  <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <div className="h-full w-[70%] bg-gradient-to-r from-indigo-400 to-purple-400"></div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card: Keuangan */}
+            <Link href="/finance" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+              <div>
+                <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-4 group-hover:scale-110 transition-transform">
+                  <PieChart className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">Keuangan</h3>
+                <p className="text-slate-500 text-sm">Laporan laba rugi otomatis & akurat.</p>
+              </div>
+              <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
+                Cek Saldo <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Card: Inventaris */}
+            <Link href="/inventory" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+              <div>
+                <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-4 group-hover:scale-110 transition-transform">
+                  <Warehouse className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">Inventaris</h3>
+                <p className="text-slate-500 text-sm">Pantau stok barang masuk & keluar.</p>
+              </div>
+              <div className="flex items-center gap-2 text-orange-600 font-bold text-sm">
+                Cek Stok <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Card: Website Store */}
+            <Link href="/" className="group h-72 bg-white rounded-[2.5rem] border border-slate-100 shadow-lg shadow-slate-200/50 p-8 flex flex-col justify-between hover:shadow-xl transition-all">
+              <div>
+                <div className="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 mb-4 group-hover:scale-110 transition-transform">
+                  <Globe className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-1">Website Toko</h3>
+                <p className="text-slate-500 text-sm">Website e-commerce instan untuk brand Anda.</p>
+              </div>
+              <div className="flex items-center gap-2 text-pink-600 font-bold text-sm">
+                Kelola Web <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
           </div>
         </div>
       </section>
 
-      {/* Feature Section: AI */}
-      <section className="py-32 bg-gray-50 border-y border-gray-200/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg text-white text-xs font-bold uppercase tracking-wider">
+      {/* Feature Highlight */}
+      <section id="features" className="py-20 px-6">
+        <div className="max-w-7xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 shadow-2xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden">
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
                 <Zap className="w-3 h-3 fill-current" />
-                Teknologi Baru
+                New Feature
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
                 Marketing Otomatis <br />
-                <span className="text-[#714B67]">Ditenagai AI.</span>
+                <span className="text-indigo-600">Ditenagai AI.</span>
               </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Tidak perlu lagi pusing memikirkan caption Instagram atau Facebook.
-                AI Nulls akan membuatkan konten viral untuk produk Anda dalam hitungan detik.
+              <p className="text-lg text-slate-500 mb-8 leading-relaxed">
+                Biarkan AI yang bekerja membuat konten Instagram, TikTok, dan Facebook Anda.
+                Hemat waktu, hasilkan lebih banyak penjualan.
               </p>
 
               <ul className="space-y-4">
-                {[
-                  "Hasilkan Caption Instagram, TikTok & FB",
-                  "Prediksi Tren Penjualan 7 Hari ke Depan",
-                  "Analisa Sentimen Pelanggan Otomatis"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
-                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                {["Caption Generator Viral", "Jadwal Posting Otomatis", "Analisa Tren Pasar"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
+
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-[2.5rem] rotate-3 opacity-20 blur-2xl"></div>
-              <div className="relative bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 p-2">
-                {/* Mockup UI */}
-                <div className="bg-gray-50 rounded-3xl p-6 aspect-square flex flex-col items-center justify-center text-center">
-                  <div className="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center text-3xl mb-4">✨</div>
-                  <h4 className="font-bold text-gray-900 mb-2">Caption Generator</h4>
-                  <p className="text-sm text-gray-500 mb-6 max-w-xs">"Keripik Tempe Renyah, Diskon 50% Hari Ini! Buruan Sikat!"</p>
-                  <div className="w-full max-w-[200px] h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-green-500 w-[80%]"></div>
-                  </div>
+              {/* Decorative Circle */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+
+              {/* Glass Card UI */}
+              <div className="relative bg-white/60 backdrop-blur-xl border border-white/50 p-8 rounded-[2rem] shadow-xl">
+                <div className="flex items-center justify-between mb-8">
+                  <h4 className="font-bold text-slate-800">Content Calendar</h4>
+                  <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md font-bold">Jan 2026</span>
+                </div>
+                <div className="space-y-4">
+                  {[1, 2, 3].map((_, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-slate-50">
+                      <div className="w-10 h-10 bg-slate-100 rounded-lg flex-shrink-0"></div>
+                      <div className="flex-1">
+                        <div className="h-2 w-24 bg-slate-200 rounded-full mb-2"></div>
+                        <div className="h-2 w-16 bg-slate-100 rounded-full"></div>
+                      </div>
+                      <div className={`p-1.5 rounded-full ${i === 0 ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-400'}`}>
+                        <CheckCircle2 className="w-4 h-4" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -140,17 +235,18 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white pt-20 pb-10 border-t border-gray-100">
+      <footer className="bg-white pt-20 pb-10 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-8 flex items-center justify-center gap-2 font-bold text-2xl tracking-tighter">
-            <div className="w-8 h-8 bg-[#714B67] rounded-lg flex items-center justify-center text-white">
+          <div className="mb-8 flex items-center justify-center gap-2 font-bold text-2xl tracking-tight">
+            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center text-white">
               <Boxes className="w-5 h-5" />
             </div>
-            <span className="text-gray-900">Nulls</span>
+            <span className="text-slate-900">Nulls</span>
           </div>
-          <p className="text-gray-500 text-sm">© 2026 Nulls Inc. v2.2 (Integrated). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v3.0 (Super Modern Light). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
+
     </div>
   );
 }
