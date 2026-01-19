@@ -9,7 +9,7 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
-  title: "SaaS ERP Dashboard",
+  title: "Nulls - SaaS ERP",
   description: "Modern ERP for UMKM",
 };
 
@@ -23,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${inter.variable} antialiased bg-white text-gray-900 font-sans`}
       >
+        <script dangerouslySetInnerHTML={{ __html: `console.log('%c NULLS V2.1 LOADED ', 'background: #714B67; color: #fff; font-size: 20px;');` }} />
         {children}
       </body>
     </html>

@@ -12,7 +12,7 @@ export default function LandingPage() {
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-200">
               <Boxes className="w-6 h-6" />
             </div>
-            <span className="bg-gradient-to-r from-purple-700 to-indigo-700 bg-clip-text text-transparent">Arland Jova</span>
+            <span className="bg-gradient-to-r from-purple-700 to-indigo-700 bg-clip-text text-transparent">Nulls</span>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
@@ -105,7 +105,7 @@ export default function LandingPage() {
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Tidak perlu lagi pusing memikirkan caption Instagram atau Facebook.
-                AI Arland Jova akan membuatkan konten viral untuk produk Anda dalam hitungan detik.
+                AI Nulls akan membuatkan konten viral untuk produk Anda dalam hitungan detik.
               </p>
 
               <ul className="space-y-4">
@@ -146,9 +146,9 @@ export default function LandingPage() {
             <div className="w-8 h-8 bg-[#714B67] rounded-lg flex items-center justify-center text-white">
               <Boxes className="w-5 h-5" />
             </div>
-            <span className="text-gray-900">Arland Jova</span>
+            <span className="text-gray-900">Nulls</span>
           </div>
-          <p className="text-gray-500 text-sm">© 2026 Arland Jova Inc. v2.0 (Odoo Style). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+          <p className="text-gray-500 text-sm">© 2026 Nulls Inc. v2.1 (Odoo Style). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
         </div>
       </footer>
     </div>
