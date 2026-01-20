@@ -39,7 +39,7 @@ def generate_marketing_copy(product_name: str, platform: str, tone: str, descrip
                     "content": prompt,
                 }
             ],
-            model="llama3-70b-8192",
+            model="llama-3.3-70b-versatile",
             temperature=0.7,
             max_tokens=500,
         )

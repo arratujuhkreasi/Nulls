@@ -116,7 +116,7 @@ def generate_ai_response(user_query: str, context: str):
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            model="llama3-8b-8192", # or mixtral-8x7b-32768
+            model="llama-3.3-70b-versatile", # or mixtral-8x7b-32768
             temperature=0.7,
             max_tokens=300,
         )
