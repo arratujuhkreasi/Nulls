@@ -12,17 +12,19 @@ def generate_marketing_copy(product_name: str, platform: str, tone: str, descrip
     """
     
     prompt = f"""
-    Internal Monologue: You are an expert Digital Marketer and Copywriter.
+    Internal Monologue: You are an expert Digital Marketer and Copywriter in Indonesia.
     Task: Write a high-converting {platform} post for the product '{product_name}'.
     Tone: {tone}
     Context/Details: {description}
+    Language: Bahasa Indonesia (Gaul/Formal depending on tone)
     
     Requirements:
     - Use relevant emojis.
-    - Include 3-5 relevant hashtags at the bottom.
+    - Include 3-5 relevant hashtags at the bottom (e.g. #fyp #viral).
     - Format it beautifully for reading.
-    - If it's Instagram/TikTok, make it catchy.
+    - If it's Instagram/TikTok, make it catchy (bisa pakai bahasa santai/gaul).
     - If it's Email, sound professional but engaging.
+    - STRICTLY OUTPUT IN BAHASA INDONESIA ONLY.
     
     Output only the copy content.
     """
@@ -32,7 +34,7 @@ def generate_marketing_copy(product_name: str, platform: str, tone: str, descrip
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a world-class copywriter specializing in viral marketing posts.",
+                    "content": "You are a world-class copywriter specializing in viral marketing posts for Indonesian audience (UMKM).",
                 },
                 {
                     "role": "user",
