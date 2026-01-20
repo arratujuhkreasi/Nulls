@@ -47,4 +47,5 @@ def generate_marketing_copy(product_name: str, platform: str, tone: str, descrip
         return chat_completion.choices[0].message.content
     except Exception as e:
         print(f"Error generating copy: {e}")
-        return "Sorry, I ran into a creative block. Please try again later!"
+        # Return the actual error for debugging
+        return f"Error details: {str(e)}"
