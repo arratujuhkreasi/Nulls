@@ -7,8 +7,8 @@ import { twMerge } from 'tailwind-merge';
 
 const MENU_ITEMS = [
     { name: 'Dashboard', icon: Home, href: '/dashboard' },
-    { name: 'Inventory', icon: Box, href: '/inventory' },
-    { name: 'Finance', icon: Wallet, href: '/finance' },
+    { name: 'Inventaris', icon: Box, href: '/inventory' },
+    { name: 'Keuangan', icon: Wallet, href: '/finance' },
     { name: 'Marketing', icon: Megaphone, href: '/marketing' },
 ];
 
