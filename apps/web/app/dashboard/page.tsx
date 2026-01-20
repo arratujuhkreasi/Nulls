@@ -1,6 +1,7 @@
 import { TrendingUp, TrendingDown, DollarSign, Package, Users, ArrowUpRight, BarChart3, Zap } from 'lucide-react';
 import { SalesChart } from '@/components/dashboard/SalesChart';
 import { getUserSubscription } from '@/app/actions/user';
+import { getForecastData } from '@/app/actions/dashboard';
 
 export default async function Dashboard() {
     const subscriptionPlan = await getUserSubscription();
@@ -43,6 +44,12 @@ export default async function Dashboard() {
             bgGradient: 'from-orange-50 to-red-50'
         },
     ];
+
+
+    // Fetch AI Forecast
+    const forecast = await getForecastData();
+    const predictedRevenue = forecast ? forecast.reduce((a, b) => a + b, 0) : 0;
+    const hasForecast = !!forecast;
 
     return (
         <div className="space-y-8 pb-10">
@@ -126,25 +133,31 @@ export default async function Dashboard() {
                             </div>
 
                             <h3 className="text-3xl font-black text-white mb-2">Minggu Depan</h3>
-                            <p className="text-white/80 text-sm mb-8">AI memprediksi pertumbuhan kuat berdasarkan tren saat ini</p>
+                            {hasForecast ? (
+                                <>
+                                    <p className="text-white/80 text-sm mb-8">AI memprediksi total pendapatan Anda 7 hari ke depan.</p>
 
-                            <div className="space-y-4 mb-8">
-                                {[
-                                    { label: 'Pendapatan Diprediksi', value: 'Rp 52.8M', percent: '+16.8%' },
-                                    { label: 'Pesanan Diharapkan', value: '1,456', percent: '+18.0%' },
-                                    { label: 'Tingkat Pertumbuhan', value: '24.5%', percent: '+2.4%' },
-                                ].map((item, i) => (
-                                    <div key={i} className="flex items-center justify-between p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                                        <div>
-                                            <p className="text-xs text-white/70 mb-1">{item.label}</p>
-                                            <p className="text-xl font-bold text-white">{item.value}</p>
+                                    <div className="space-y-4 mb-8">
+                                        <div className="flex items-center justify-between p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                                            <div>
+                                                <p className="text-xs text-white/70 mb-1">Pendapatan Diprediksi</p>
+                                                <p className="text-xl font-bold text-white">
+                                                    {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(predictedRevenue)}
+                                                </p>
+                                            </div>
+                                            <span className="text-xs font-bold text-green-400 bg-green-400/20 px-2 py-1 rounded-lg">
+                                                AI
+                                            </span>
                                         </div>
-                                        <span className="text-xs font-bold text-green-400 bg-green-400/20 px-2 py-1 rounded-lg">
-                                            {item.percent}
-                                        </span>
                                     </div>
-                                ))}
-                            </div>
+                                </>
+                            ) : (
+                                <div className="p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 mb-8">
+                                    <p className="text-white text-sm">
+                                        Data transaksi belum cukup untuk prediksi AI. Minimal diperlukan 30 hari data historis.
+                                    </p>
+                                </div>
+                            )}
 
                             <button className="w-full py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl text-white font-semibold text-sm border border-white/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
                                 Lihat Laporan Lengkap
