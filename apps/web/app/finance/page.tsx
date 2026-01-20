@@ -5,7 +5,7 @@ import FinanceClientWrapper from "@/components/finance/FinanceClientWrapper";
 
 export default async function FinancePage() {
     const summary = await getFinancialSummary();
-    const expenses = await getExpenses();
+    const { expenses } = await getExpenses(); // Destructure expenses from pagination object
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8">
