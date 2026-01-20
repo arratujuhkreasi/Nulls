@@ -296,34 +296,85 @@ export default function LandingPage() {
               </div>
 
               <div className="relative">
-                {/* Glass Card UI */}
-                <div className="relative bg-white/70 backdrop-blur-xl border border-white/50 p-8 rounded-3xl shadow-2xl">
-                  <div className="flex items-center justify-between mb-6">
-                    <h4 className="font-bold text-slate-800">Content Calendar</h4>
-                    <span className="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg font-bold">Jan 2026</span>
+                {/* Glass Card UI - AI Dashboard */}
+                <div className="relative bg-white/40 backdrop-blur-2xl border border-white/60 p-8 rounded-[2.5rem] shadow-2xl overflow-hidden group hover:scale-[1.02] transition-transform duration-500">
+                  {/* Background Glow */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -z-10" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -z-10" />
+
+                  <div className="flex items-center justify-between mb-8">
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-lg">AI Content Studio</h4>
+                      <p className="text-xs text-slate-500 font-medium">Auto-generating for 3 platforms...</p>
+                    </div>
+                    <div className="flex items-center gap-2 px-3 py-1 bg-green-100/80 rounded-full border border-green-200 backdrop-blur-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      </span>
+                      <span className="text-xs font-bold text-green-700">Active</span>
+                    </div>
                   </div>
+
                   <div className="space-y-4">
-                    {[
-                      { status: 'done', color: 'bg-green-500' },
-                      { status: 'progress', color: 'bg-indigo-500' },
-                      { status: 'pending', color: 'bg-slate-300' }
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-4 p-4 bg-white/80 rounded-2xl shadow-sm border border-slate-50" style={{ animationDelay: `${i * 100}ms` }}>
-                        <div className="w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex-shrink-0 animate-pulse-soft" />
-                        <div className="flex-1 space-y-2">
-                          <div className="h-2 w-32 bg-slate-200 rounded-full" />
-                          <div className="h-2 w-20 bg-slate-100 rounded-full" />
+                    {/* Item 1: TikTok - Viral */}
+                    <div className="relative p-4 bg-white/60 rounded-2xl shadow-sm border border-white/50 animate-slide-up bg-gradient-to-r from-transparent to-white/40" style={{ animationDelay: '0ms' }}>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shadow-lg transform rotate-[-2deg]">
+                          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" /></svg>
                         </div>
-                        <div className={`p-2 rounded-full ${item.status === 'done' ? 'bg-green-100' : item.status === 'progress' ? 'bg-indigo-100' : 'bg-slate-100'}`}>
-                          <CheckCircle2 className={`w-4 h-4 ${item.status === 'done' ? 'text-green-600' : item.status === 'progress' ? 'text-indigo-600' : 'text-slate-400'}`} />
+                        <div className="flex-1">
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="font-bold text-slate-800 text-sm">Promo Keripik Pedas</span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full">Viral Score: 98/100</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                            <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 w-[92%]"></div>
+                          </div>
+                          <p className="text-[10px] text-slate-500 mt-1">AI generating captions & hashtags...</p>
                         </div>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Item 2: Instagram - Story */}
+                    <div className="relative p-4 bg-white/60 rounded-2xl shadow-sm border border-white/50 animate-slide-up" style={{ animationDelay: '100ms' }}>
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white flex items-center justify-center shadow-lg transform rotate-[2deg]">
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex justify-between items-center mb-1">
+                            <span className="font-bold text-slate-800 text-sm">Story Flash Sale</span>
+                            <span className="text-[10px] font-bold px-2 py-0.5 bg-green-100 text-green-700 rounded-full">Ready</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <CheckCircle2 className="w-3 h-3 text-green-500" />
+                            <span className="text-[10px] text-slate-400">Scheduled for 12:00 PM</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Floating Elements */}
+                    <div className="absolute top-1/2 -right-4 bg-white p-3 rounded-xl shadow-xl border border-indigo-50 animate-bounce-slow">
+                      <div className="text-xs font-bold text-indigo-600">ROI +150% 🚀</div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Status */}
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                    <div className="flex -space-x-2">
+                      <div className="w-6 h-6 rounded-full bg-indigo-100 border-2 border-white"></div>
+                      <div className="w-6 h-6 rounded-full bg-pink-100 border-2 border-white"></div>
+                      <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[8px] font-bold">+12</div>
+                    </div>
+                    <span>Last generated 2m ago</span>
                   </div>
                 </div>
 
-                {/* Floating decoration */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse-soft" />
+                {/* Enhanced Floating decoration */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-indigo-400/30 to-purple-400/30 rounded-full blur-3xl animate-pulse-soft pointer-events-none" />
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-tr from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl animate-pulse-slow pointer-events-none" />
               </div>
             </div>
           </div>
