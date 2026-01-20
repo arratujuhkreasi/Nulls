@@ -4,7 +4,8 @@ import { ProductTable } from "@/components/inventory/ProductTable";
 export const dynamic = "force-dynamic";
 
 export default async function InventoryPage() {
-    const products = await getProducts();
+    const { products } = await getProducts(); // Destructure products from pagination object
+
 
     return (
         <div className="p-8 max-w-7xl mx-auto">
