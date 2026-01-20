@@ -181,100 +181,172 @@ export default function LandingPage() {
 
           </div>
         </div>
-      </section>
+    </div>
+      </section >
 
-      {/* Feature Highlight */}
-      <section id="features" className="py-20 px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-white/60 backdrop-blur-xl rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/50 relative overflow-hidden">
-
-            {/* Decorative gradient */}
-            <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-indigo-100/50 to-transparent rounded-full blur-3xl" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
-                  <Zap className="w-3 h-3 fill-current" />
-                  New Feature
-                </div>
-                <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
-                  Marketing <span className="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">Otomatis AI</span>
-                </h2>
-                <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                  Biarkan AI yang bekerja membuat konten Instagram, TikTok, dan Facebook Anda.
-                  Hemat waktu, hasilkan lebih banyak penjualan.
-                </p>
-
-                <ul className="space-y-4">
-                  {[
-                    { title: "Caption Generator Viral", desc: "AI menulis caption menarik setiap hari" },
-                    { title: "Jadwal Posting Otomatis", desc: "Set it and forget it" },
-                    { title: "Analisa Tren Pasar", desc: "Tau apa yang lagi trending" }
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-slate-700">
-                      <div className="mt-0.5 p-1 bg-green-100 rounded-full">
-                        <CheckCircle2 className="w-4 h-4 text-green-600" />
-                      </div>
-                      <div>
-                        <p className="font-semibold">{item.title}</p>
-                        <p className="text-sm text-slate-500">{item.desc}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+    {/* AI Technology Highlight */ }
+    < section className = "py-20 px-6 relative z-10 overflow-hidden" >
+        <div className="absolute inset-0 bg-slate-900 clip-path-slant" />
+        
+        <div className="max-w-7xl mx-auto relative z-10 text-white">
+          <div className="flex flex-col md:flex-row items-center gap-16">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/30 rounded-full text-indigo-300 text-xs font-bold uppercase tracking-wider mb-6">
+                <Sparkles className="w-3 h-3 text-indigo-400" />
+                Teknologi AI Mutakhir
               </div>
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-[1.1]">
+                Prediksi Bisnis dengan <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Akurasi 95%</span>
+              </h2>
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+                Jangan cuma menebak. Gunakan kekuatan <strong>Deep Learning (LSTM)</strong> untuk memprediksi omzet penjualan Anda minggu depan. 
+                Sistem kami belajar dari pola transaksi Anda secara otomatis.
+              </p>
 
-              <div className="relative">
-                {/* Glass Card UI */}
-                <div className="relative bg-white/70 backdrop-blur-xl border border-white/50 p-8 rounded-3xl shadow-2xl">
-                  <div className="flex items-center justify-between mb-6">
-                    <h4 className="font-bold text-slate-800">Content Calendar</h4>
-                    <span className="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg font-bold">Jan 2026</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { label: 'Akurasi Model', value: '85-95%', desc: 'Teruji dengan data real UMKM', color: 'text-green-400' },
+                  { label: 'Kecepatan Proses', value: '<50ms', desc: 'Real-time analysis', color: 'text-cyan-400' },
+                  { label: 'Arsitektur', value: 'Neural Network', desc: 'LSTM TensorFlow Engine', color: 'text-purple-400' },
+                  { label: 'Adaptasi', value: 'Self-Learning', desc: 'Semakin pintar setiap hari', color: 'text-pink-400' },
+                ].map((stat, i) => (
+                  <div key={i} className="bg-white/5 border border-white/10 p-4 rounded-2xl hover:bg-white/10 transition-colors">
+                    <p className={`text-3xl font-black ${stat.color} mb-1`}>{stat.value}</p>
+                    <p className="font-bold text-white mb-0.5">{stat.label}</p>
+                    <p className="text-xs text-slate-400">{stat.desc}</p>
                   </div>
-                  <div className="space-y-4">
-                    {[
-                      { status: 'done', color: 'bg-green-500' },
-                      { status: 'progress', color: 'bg-indigo-500' },
-                      { status: 'pending', color: 'bg-slate-300' }
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-4 p-4 bg-white/80 rounded-2xl shadow-sm border border-slate-50" style={{ animationDelay: `${i * 100}ms` }}>
-                        <div className="w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex-shrink-0 animate-pulse-soft" />
-                        <div className="flex-1 space-y-2">
-                          <div className="h-2 w-32 bg-slate-200 rounded-full" />
-                          <div className="h-2 w-20 bg-slate-100 rounded-full" />
-                        </div>
-                        <div className={`p-2 rounded-full ${item.status === 'done' ? 'bg-green-100' : item.status === 'progress' ? 'bg-indigo-100' : 'bg-slate-100'}`}>
-                          <CheckCircle2 className={`w-4 h-4 ${item.status === 'done' ? 'text-green-600' : item.status === 'progress' ? 'text-indigo-600' : 'text-slate-400'}`} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                ))}
+              </div>
+            </div>
 
-                {/* Floating decoration */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse-soft" />
+            <div className="flex-1 relative w-full">
+              {/* Visual Representasi AI */}
+              <div className="relative aspect-square max-w-md mx-auto">
+                 <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full blur-[100px] opacity-50 animate-pulse-slow" />
+                 <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 shadow-2xl overflow-hidden">
+                    <div className="flex items-center justify-between mb-8">
+                       <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 rounded-full bg-red-400" />
+                          <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                          <div className="w-3 h-3 rounded-full bg-green-400" />
+                       </div>
+                       <div className="text-xs font-mono text-slate-400">ai_engine_v1.py</div>
+                    </div>
+                    <div className="space-y-3 font-mono text-sm">
+                       <div className="text-green-400">$ analyzing_transactions...</div>
+                       <div className="text-slate-300 pl-4">Found: 1,240 data points</div>
+                       <div className="text-slate-300 pl-4">Pattern: Seasonal Growth detected</div>
+                       <div className="text-green-400">$ running_prediction_model</div>
+                       <div className="text-blue-400 pl-4">Loading LSTM weights... OK</div>
+                       <div className="text-blue-400 pl-4">Forecasting next 7 days...</div>
+                       <div className="text-green-400">$ result_ready</div>
+                       <div className="mt-4 p-4 bg-black/30 rounded-xl border border-white/10">
+                          <div className="flex justify-between items-end mb-2">
+                             <span className="text-slate-400">Predicted Revenue</span>
+                             <span className="text-xl font-bold text-white">Rp 15.400.000</span>
+                          </div>
+                          <div className="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+                             <div className="bg-green-500 h-full w-[85%] animate-pulse" />
+                          </div>
+                          <div className="text-right text-xs text-green-400 mt-1">Confidence: 94.2%</div>
+                       </div>
+                    </div>
+                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section >
+    <div className="max-w-7xl mx-auto">
+      <div className="bg-white/60 backdrop-blur-xl rounded-[3rem] p-12 md:p-20 shadow-2xl border border-white/50 relative overflow-hidden">
 
-      {/* Footer */}
-      <footer className="bg-white/60 backdrop-blur-xl border-t border-slate-100 py-12 mt-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-6 flex items-center justify-center gap-2 font-bold text-2xl tracking-tight">
-            <Image
-              src="/logo.png"
-              alt="Nulls Logo"
-              width={120}
-              height={40}
-              className="h-10 w-auto object-contain"
-            />
+        {/* Decorative gradient */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-indigo-100/50 to-transparent rounded-full blur-3xl" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+              <Zap className="w-3 h-3 fill-current" />
+              New Feature
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
+              Marketing <span className="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">Otomatis AI</span>
+            </h2>
+            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              Biarkan AI yang bekerja membuat konten Instagram, TikTok, dan Facebook Anda.
+              Hemat waktu, hasilkan lebih banyak penjualan.
+            </p>
+
+            <ul className="space-y-4">
+              {[
+                { title: "Caption Generator Viral", desc: "AI menulis caption menarik setiap hari" },
+                { title: "Jadwal Posting Otomatis", desc: "Set it and forget it" },
+                { title: "Analisa Tren Pasar", desc: "Tau apa yang lagi trending" }
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-slate-700">
+                  <div className="mt-0.5 p-1 bg-green-100 rounded-full">
+                    <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">{item.title}</p>
+                    <p className="text-sm text-slate-500">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-          <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v4.0 (Modern Redesign). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
-        </div>
-      </footer>
 
+          <div className="relative">
+            {/* Glass Card UI */}
+            <div className="relative bg-white/70 backdrop-blur-xl border border-white/50 p-8 rounded-3xl shadow-2xl">
+              <div className="flex items-center justify-between mb-6">
+                <h4 className="font-bold text-slate-800">Content Calendar</h4>
+                <span className="text-xs bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg font-bold">Jan 2026</span>
+              </div>
+              <div className="space-y-4">
+                {[
+                  { status: 'done', color: 'bg-green-500' },
+                  { status: 'progress', color: 'bg-indigo-500' },
+                  { status: 'pending', color: 'bg-slate-300' }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 bg-white/80 rounded-2xl shadow-sm border border-slate-50" style={{ animationDelay: `${i * 100}ms` }}>
+                    <div className="w-12 h-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl flex-shrink-0 animate-pulse-soft" />
+                    <div className="flex-1 space-y-2">
+                      <div className="h-2 w-32 bg-slate-200 rounded-full" />
+                      <div className="h-2 w-20 bg-slate-100 rounded-full" />
+                    </div>
+                    <div className={`p-2 rounded-full ${item.status === 'done' ? 'bg-green-100' : item.status === 'progress' ? 'bg-indigo-100' : 'bg-slate-100'}`}>
+                      <CheckCircle2 className={`w-4 h-4 ${item.status === 'done' ? 'text-green-600' : item.status === 'progress' ? 'text-indigo-600' : 'text-slate-400'}`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Floating decoration */}
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse-soft" />
+          </div>
+        </div>
+      </div>
     </div>
+      </section >
+
+    {/* Footer */ }
+    < footer className = "bg-white/60 backdrop-blur-xl border-t border-slate-100 py-12 mt-20 relative z-10" >
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="mb-6 flex items-center justify-center gap-2 font-bold text-2xl tracking-tight">
+          <Image
+            src="/logo.png"
+            alt="Nulls Logo"
+            width={120}
+            height={40}
+            className="h-10 w-auto object-contain"
+          />
+        </div>
+        <p className="text-slate-500 text-sm">© 2026 Nulls Inc. v4.0 (Modern Redesign). Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+      </div>
+      </footer >
+
+    </div >
   );
 }
