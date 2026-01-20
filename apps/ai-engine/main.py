@@ -1,15 +1,44 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Dict, Any, Union
+import os
+
 # Import from updated forecasting service
 from services.forecasting import build_and_train_model, predict_recursive
 from services.chat import process_chat_message
 from services.marketing import generate_marketing_copy
 from dotenv import load_dotenv
 
-load_dotenv() # Load environment variables from .env
+load_dotenv()  # Load environment variables from .env
 
-app = FastAPI(title="SaaS ERP AI Engine (Production Ready)")
+# Validate required environment variables
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is required. Please check your .env file.")
+
+# Initialize FastAPI app with metadata
+app = FastAPI(
+    title="SaaS ERP AI Engine",
+    description="AI services for sales forecasting, WhatsApp chat assistant, and marketing content generation",
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
+)
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",  # Development frontend
+        "http://127.0.0.1:3000",
+        # Add production domain when deployed:
+        # "https://yourdomain.com",
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 class TrainingDataPoint(BaseModel):
     date: str
@@ -35,7 +64,26 @@ class MarketingRequest(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "AI Engine is running"}
+    return {
+        "message": "AI Engine is running",
+        "version": "1.0.0",
+        "docs": "/docs",
+    }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "version": "1.0.0",
+        "services": {
+            "forecasting": "ready",
+            "chat": "ready",
+            "marketing": "ready",
+        },
+        "environment": {
+            "groq_api_configured": bool(GROQ_API_KEY),
+        }
+    }
 
 @app.post("/train")
 def train_model(payload: TrainRequest):

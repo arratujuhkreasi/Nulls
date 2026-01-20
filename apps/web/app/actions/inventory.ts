@@ -2,24 +2,35 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { productSchema } from "@/lib/validation";
 
-export async function getProducts() {
+export async function getProducts(page: number = 1, limit: number = 20) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    if (!user) return [];
+    if (!user) return { products: [], total: 0, page, limit };
 
-    const { data, error } = await supabase
+    // Calculate range for pagination
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
+    const { data, error, count } = await supabase
         .from('products')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .select('*', { count: 'exact' })
+        .order('created_at', { ascending: false })
+        .range(from, to);
 
     if (error) {
         console.error('Error fetching products:', error);
-        return [];
+        return { products: [], total: 0, page, limit };
     }
 
-    return data;
+    return {
+        products: data || [],
+        total: count || 0,
+        page,
+        limit
+    };
 }
 
 export async function createProduct(formData: FormData) {
@@ -30,14 +41,21 @@ export async function createProduct(formData: FormData) {
         return { error: "Unauthorized" };
     }
 
-    const name = formData.get("name") as string;
-    const sku = formData.get("sku") as string;
-    const stock = parseInt(formData.get("stock") as string);
-    const buy_price = parseFloat(formData.get("buy_price") as string);
-    const sell_price = parseFloat(formData.get("sell_price") as string);
+    // Validate input with Zod
+    const validation = productSchema.safeParse({
+        name: formData.get("name"),
+        sku: formData.get("sku") || undefined,
+        stock: Number(formData.get("stock")),
+        buy_price: Number(formData.get("buy_price")),
+        sell_price: Number(formData.get("sell_price")),
+    });
 
-    // Optional: Image URL
-    // const image_url = formData.get("image_url") as string;
+    if (!validation.success) {
+        const firstError = validation.error.issues[0];
+        return { error: firstError.message };
+    }
+
+    const { name, sku, stock, buy_price, sell_price } = validation.data;
 
     const { error } = await supabase
         .from('products')
@@ -48,7 +66,6 @@ export async function createProduct(formData: FormData) {
             stock,
             buy_price,
             sell_price,
-            // image_url, 
         });
 
     if (error) {
@@ -68,11 +85,21 @@ export async function updateProduct(id: string, formData: FormData) {
         return { error: "Unauthorized" };
     }
 
-    const name = formData.get("name") as string;
-    const sku = formData.get("sku") as string;
-    const stock = parseInt(formData.get("stock") as string);
-    const buy_price = parseFloat(formData.get("buy_price") as string);
-    const sell_price = parseFloat(formData.get("sell_price") as string);
+    // Validate input with Zod
+    const validation = productSchema.safeParse({
+        name: formData.get("name"),
+        sku: formData.get("sku") || undefined,
+        stock: Number(formData.get("stock")),
+        buy_price: Number(formData.get("buy_price")),
+        sell_price: Number(formData.get("sell_price")),
+    });
+
+    if (!validation.success) {
+        const firstError = validation.error.issues[0];
+        return { error: firstError.message };
+    }
+
+    const { name, sku, stock, buy_price, sell_price } = validation.data;
 
     const { error } = await supabase
         .from('products')

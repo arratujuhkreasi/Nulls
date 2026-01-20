@@ -4,9 +4,20 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 # Configuration
-# Allow env vars or defaults for testing
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/saas_erp")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "your_groq_api_key")
+# Strict environment validation - no defaults for security
+DATABASE_URL = os.getenv("DATABASE_URL")
+if not DATABASE_URL:
+    raise ValueError(
+        "DATABASE_URL environment variable is required. "
+        "Please set it in your .env file with your PostgreSQL connection string."
+    )
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+if not GROQ_API_KEY:
+    raise ValueError(
+        "GROQ_API_KEY environment variable is required. "
+        "Get your API key from https://console.groq.com/"
+    )
 
 # Setup DB
 engine = create_engine(DATABASE_URL)

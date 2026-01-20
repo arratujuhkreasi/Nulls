@@ -1,113 +1,202 @@
-import { ArrowUpRight, TrendingUp, MoreHorizontal, Calendar, Activity, Zap } from 'lucide-react';
+import { TrendingUp, TrendingDown, DollarSign, Package, Users, ArrowUpRight, BarChart3, Zap } from 'lucide-react';
 import { SalesChart } from '@/components/dashboard/SalesChart';
 import { getUserSubscription } from '@/app/actions/user';
 
 export default async function Dashboard() {
     const subscriptionPlan = await getUserSubscription();
 
+    const stats = [
+        {
+            name: 'Total Revenue',
+            value: 'Rp 45.2M',
+            change: '+12.5%',
+            trend: 'up',
+            icon: DollarSign,
+            gradient: 'from-emerald-500 to-teal-500',
+            bgGradient: 'from-emerald-50 to-teal-50'
+        },
+        {
+            name: 'Total Orders',
+            value: '1,234',
+            change: '+8.2%',
+            trend: 'up',
+            icon: Package,
+            gradient: 'from-blue-500 to-cyan-500',
+            bgGradient: 'from-blue-50 to-cyan-50'
+        },
+        {
+            name: 'Active Users',
+            value: '8,549',
+            change: '+22.1%',
+            trend: 'up',
+            icon: Users,
+            gradient: 'from-purple-500 to-pink-500',
+            bgGradient: 'from-purple-50 to-pink-50'
+        },
+        {
+            name: 'Conversion Rate',
+            value: '3.24%',
+            change: '-1.2%',
+            trend: 'down',
+            icon: BarChart3,
+            gradient: 'from-orange-500 to-red-500',
+            bgGradient: 'from-orange-50 to-red-50'
+        },
+    ];
+
     return (
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 pb-10">
+        <div className="space-y-8 pb-10">
 
-            {/* Widget Kiri (Card): Trending Prediction */}
-            <div className="xl:col-span-4 flex flex-col gap-6">
-                <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100/50 h-full relative overflow-hidden group hover:shadow-xl hover:shadow-indigo-50/50 transition-all duration-500">
-                    {/* Background decoration */}
-                    <div className="absolute top-[-20%] right-[-20%] w-64 h-64 bg-indigo-50/50 rounded-full blur-3xl opacity-60 group-hover:opacity-100 transition-opacity"></div>
+            {/* Stats Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                {stats.map((stat, index) => (
+                    <div
+                        key={stat.name}
+                        className="group relative animate-slide-up"
+                        style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                        {/* Glow effect */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                    <div className="relative z-10 flex flex-col h-full">
-                        <div className="flex items-center justify-between mb-6">
-                            <div className="flex items-center gap-2 px-3 py-1 bg-indigo-50 rounded-full w-fit">
-                                <Zap className="w-3 h-3 text-indigo-600 fill-current" />
-                                <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">AI Forecast</span>
+                        {/* Card */}
+                        <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-white/50 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                            <div className="flex items-start justify-between mb-4">
+                                <div className={`p-3 bg-gradient-to-br ${stat.gradient} rounded-2xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                    <stat.icon className="w-6 h-6 text-white" />
+                                </div>
+                                <div className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${stat.trend === 'up'
+                                        ? 'bg-green-100 text-green-700'
+                                        : 'bg-red-100 text-red-700'
+                                    }`}>
+                                    {stat.trend === 'up' ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                                    {stat.change}
+                                </div>
                             </div>
-                            <button className="text-gray-400 hover:text-gray-600"><MoreHorizontal className="w-5 h-5" /></button>
+                            <p className="text-sm text-slate-500 font-medium mb-1">{stat.name}</p>
+                            <h3 className="text-3xl font-black text-slate-900">{stat.value}</h3>
                         </div>
+                    </div>
+                ))}
+            </div>
 
-                        <h3 className="text-2xl font-bold text-gray-800 mb-1 leading-tight">Trending <br />Prediction</h3>
-                        <p className="text-sm text-gray-400 mb-8">Generated by AI Engine</p>
+            {/* Main Chart Section */}
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
-                        <div className="flex items-center gap-3 mb-8">
-                            <span className="text-5xl font-black text-gray-900 tracking-tighter">+24.5%</span>
-                            <span className="px-2 py-1 bg-green-100/50 text-green-600 text-xs font-bold rounded-lg flex items-center">
-                                <ArrowUpRight className="w-3 h-3 mr-1" /> MoM
-                            </span>
-                        </div>
-
-                        {/* Product Mock */}
-                        <div className="mt-auto bg-gradient-to-br from-white to-gray-50 rounded-2xl p-4 border border-gray-100 flex items-center gap-4 shadow-sm group-hover:scale-[1.02] transition-transform duration-300">
-                            <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center text-3xl shrink-0">👟</div>
+                {/* Sales Performance Chart */}
+                <div className="xl:col-span-8 relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/50 to-purple-100/50 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-white/50 shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <div className="flex items-center justify-between mb-8">
                             <div>
-                                <h4 className="font-bold text-gray-800">Summer Sneakers</h4>
-                                <p className="text-xs text-indigo-500 font-semibold mt-1">Expected High Demand</p>
+                                <h2 className="text-2xl font-bold text-slate-900 mb-1">Sales Performance</h2>
+                                <p className="text-sm text-slate-500 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                                    Live data • Updated 2 min ago
+                                </p>
                             </div>
-                            <div className="ml-auto">
-                                <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-                                    <ArrowUpRight className="w-5 h-5" />
+
+                            <div className="flex items-center gap-2 bg-slate-50 p-1 rounded-xl">
+                                <button className="px-4 py-2 bg-white rounded-lg shadow-sm text-xs font-bold text-slate-800 transition-all hover:scale-105">
+                                    Monthly
+                                </button>
+                                <button className="px-4 py-2 hover:bg-white/50 rounded-lg text-xs font-medium text-slate-500 transition-all hover:scale-105">
+                                    Weekly
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="h-[350px]">
+                            <SalesChart subscriptionPlan={subscriptionPlan} />
+                        </div>
+                    </div>
+                </div>
+
+                {/* AI Forecast Widget */}
+                <div className="xl:col-span-4 relative group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 to-pink-100/50 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="relative bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl p-8 shadow-2xl border border-white/20 h-full flex flex-col hover:scale-[1.02] transition-all duration-500">
+                        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay rounded-3xl" />
+
+                        <div className="relative z-10">
+                            <div className="flex items-center gap-2 mb-6">
+                                <div className="p-2 bg-white/10 backdrop-blur-sm rounded-xl">
+                                    <Zap className="w-5 h-5 text-white" />
                                 </div>
+                                <span className="text-xs font-bold text-white/80 uppercase tracking-wider">AI Prediction</span>
                             </div>
+
+                            <h3 className="text-3xl font-black text-white mb-2">Next Week</h3>
+                            <p className="text-white/80 text-sm mb-8">AI predicts strong growth based on current trends</p>
+
+                            <div className="space-y-4 mb-8">
+                                {[
+                                    { label: 'Predicted Revenue', value: 'Rp 52.8M', percent: '+16.8%' },
+                                    { label: 'Expected Orders', value: '1,456', percent: '+18.0%' },
+                                    { label: 'Growth Rate', value: '24.5%', percent: '+2.4%' },
+                                ].map((item, i) => (
+                                    <div key={i} className="flex items-center justify-between p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                                        <div>
+                                            <p className="text-xs text-white/70 mb-1">{item.label}</p>
+                                            <p className="text-xl font-bold text-white">{item.value}</p>
+                                        </div>
+                                        <span className="text-xs font-bold text-green-400 bg-green-400/20 px-2 py-1 rounded-lg">
+                                            {item.percent}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button className="w-full py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl text-white font-semibold text-sm border border-white/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                                View Full Report
+                                <ArrowUpRight className="w-4 h-4" />
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Widget Utama (Besar): Sales Performance */}
-            <div className="xl:col-span-8">
-                <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100/50 h-[450px] flex flex-col hover:shadow-xl hover:shadow-indigo-50/50 transition-all duration-500">
-                    <div className="flex items-center justify-between mb-8">
-                        <div>
-                            <h2 className="text-2xl font-bold text-gray-800">Sales Performance</h2>
-                            <div className="flex items-center gap-2 text-sm text-gray-500 mt-1">
-                                <Activity className="w-4 h-4 text-emerald-500" />
-                                <span><span className="font-semibold text-gray-900">$128k</span> total revenue this month</span>
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                    {
+                        title: 'Add New Product',
+                        desc: 'Expand your inventory',
+                        icon: Package,
+                        gradient: 'from-blue-500 to-cyan-500',
+                        href: '/inventory'
+                    },
+                    {
+                        title: 'Generate Report',
+                        desc: 'View financial insights',
+                        icon: BarChart3,
+                        gradient: 'from-green-500 to-emerald-500',
+                        href: '/finance'
+                    },
+                    {
+                        title: 'Create Campaign',
+                        desc: 'AI-powered marketing',
+                        icon: Zap,
+                        gradient: 'from-purple-500 to-pink-500',
+                        href: '/marketing'
+                    },
+                ].map((action, i) => (
+                    <a
+                        key={i}
+                        href={action.href}
+                        className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    >
+                        <div className="flex items-center gap-4">
+                            <div className={`p-3 bg-gradient-to-br ${action.gradient} rounded-xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                                <action.icon className="w-5 h-5 text-white" />
                             </div>
-                        </div>
-
-                        <div className="flex items-center gap-2 bg-gray-50 p-1 rounded-xl">
-                            <button className="px-4 py-2 bg-white rounded-lg shadow-sm text-xs font-bold text-gray-800">Monthly</button>
-                            <button className="px-4 py-2 hover:bg-white/50 rounded-lg text-xs font-medium text-gray-500 transition-colors">Weekly</button>
-                        </div>
-                    </div>
-
-                    {/* Chart Real */}
-                    <div className="flex-1 w-full bg-gradient-to-b from-transparent to-indigo-50/20 rounded-2xl border-2 border-dashed border-indigo-50 overflow-hidden relative">
-                        <SalesChart subscriptionPlan={subscriptionPlan} />
-                    </div>
-                </div>
-            </div>
-
-            {/* Widget Bawah: Growth Mission */}
-            <div className="xl:col-span-12">
-                <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100/50 hover:shadow-xl hover:shadow-indigo-50/50 transition-all duration-500">
-                    <div className="flex items-center justify-between mb-8">
-                        <div>
-                            <h3 className="text-xl font-bold text-gray-800">Growth Missions</h3>
-                            <p className="text-sm text-gray-500 mt-1">Complete these tasks to grow your business.</p>
-                        </div>
-                        <button className="text-sm text-indigo-600 font-bold hover:bg-indigo-50 px-4 py-2 rounded-xl transition-colors">View All Missions</button>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[
-                            { title: "Complete Store Profile", desc: "Add logo & description", progress: 85, color: "bg-indigo-500", icon: "🏪" },
-                            { title: "Connect Marketplace", desc: "Link Tokopedia/Shopee", progress: 45, color: "bg-purple-500", icon: "🔗" },
-                            { title: "First Ad Campaign", desc: "Reach 1000 customers", progress: 20, color: "bg-pink-500", icon: "📢" }
-                        ].map((mission, i) => (
-                            <div key={i} className="p-5 rounded-3xl bg-gray-50 border border-transparent hover:border-gray-200 hover:bg-white transition-all duration-300 group cursor-pointer">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-xl group-hover:scale-110 transition-transform">{mission.icon}</div>
-                                    <span className="px-3 py-1 bg-white rounded-lg text-xs font-bold text-gray-900 shadow-sm">{mission.progress}%</span>
-                                </div>
-
-                                <h4 className="font-bold text-gray-800 mb-1">{mission.title}</h4>
-                                <p className="text-xs text-gray-500 mb-4 font-medium">{mission.desc}</p>
-
-                                <div className="h-2.5 w-full bg-gray-200/60 rounded-full overflow-hidden">
-                                    <div className={`h-full ${mission.color} rounded-full transition-all duration-1000 ease-out`} style={{ width: `${mission.progress}%` }}></div>
-                                </div>
+                            <div className="flex-1">
+                                <h4 className="font-bold text-slate-900 mb-0.5">{action.title}</h4>
+                                <p className="text-xs text-slate-500">{action.desc}</p>
                             </div>
-                        ))}
-                    </div>
-                </div>
+                            <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                        </div>
+                    </a>
+                ))}
             </div>
 
         </div>

@@ -2,14 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Box, ShoppingCart, Wallet, Megaphone, Hexagon } from 'lucide-react';
-import { clsx } from 'clsx';
+import { Home, Box, DollarSign, Wallet, Megaphone, Sparkles } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 const MENU_ITEMS = [
-    { name: 'Home', icon: Home, href: '/' },
+    { name: 'Dashboard', icon: Home, href: '/dashboard' },
     { name: 'Inventory', icon: Box, href: '/inventory' },
-    { name: 'Sales', icon: ShoppingCart, href: '/sales' },
     { name: 'Finance', icon: Wallet, href: '/finance' },
     { name: 'Marketing', icon: Megaphone, href: '/marketing' },
 ];
@@ -18,36 +16,59 @@ export function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-20 xl:w-24 bg-white border-r border-gray-100 flex flex-col items-center py-8 z-50 shadow-sm">
-            <div className="mb-10">
-                <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-                    <Hexagon className="w-6 h-6 fill-current" />
+        <aside className="fixed left-4 top-4 bottom-4 w-20 bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl flex flex-col items-center py-6 z-50">
+            {/* Logo with animated glow */}
+            <div className="mb-8">
+                <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl blur-lg opacity-75 animate-glow" />
+                    <div className="relative w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
+                        <Sparkles className="w-6 h-6 text-white" />
+                    </div>
                 </div>
             </div>
 
-            <nav className="flex flex-col gap-6 w-full px-4 items-center">
-                {MENU_ITEMS.map((item) => {
+            {/* Menu items */}
+            <nav className="flex flex-col gap-3 flex-1">
+                {MENU_ITEMS.map((item, index) => {
                     const isActive = pathname === item.href;
                     return (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className={twMerge(
-                                "flex flex-col items-center justify-center gap-1 w-12 h-12 xl:w-14 xl:h-14 rounded-2xl transition-all duration-300 group relative",
-                                isActive
-                                    ? "bg-indigo-600 text-white shadow-md shadow-indigo-300 scale-105"
-                                    : "text-gray-400 hover:bg-white hover:text-indigo-600 hover:shadow-md"
-                            )}
-                        >
-                            <item.icon className={twMerge("w-5 h-5 xl:w-6 xl:h-6 transition-transform", !isActive && "group-hover:scale-110")} />
-                            {/* Tooltip for small sidebar */}
-                            <span className="absolute left-16 px-3 py-1 bg-gray-900 text-white text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+                        <div key={item.name} className="relative group">
+                            <Link
+                                href={item.href}
+                                className={twMerge(
+                                    "relative flex items-center justify-center w-14 h-14 rounded-2xl transition-all duration-300",
+                                    isActive
+                                        ? "bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg scale-110"
+                                        : "text-slate-400 hover:bg-slate-50 hover:text-indigo-600 hover:scale-105"
+                                )}
+                                style={{ animationDelay: `${index * 50}ms` }}
+                            >
+                                <item.icon className="w-6 h-6 transition-transform group-hover:scale-110" />
+
+                                {/* Active indicator */}
+                                {isActive && (
+                                    <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-indigo-600 to-purple-600 rounded-full" />
+                                )}
+                            </Link>
+
+                            {/* Tooltip */}
+                            <div className="absolute left-20 top-1/2 -translate-y-1/2 px-3 py-2 bg-slate-900 text-white text-xs rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-lg">
                                 {item.name}
-                            </span>
-                        </Link>
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-slate-900 rotate-45" />
+                            </div>
+                        </div>
                     );
                 })}
             </nav>
+
+            {/* Bottom decoration */}
+            <div className="mt-auto">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-xl bg-white shadow-sm flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    </div>
+                </div>
+            </div>
         </aside>
     );
 }

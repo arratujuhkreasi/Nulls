@@ -2,6 +2,7 @@
 
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
+import { expenseSchema } from "@/lib/validation";
 
 export async function createExpense(formData: FormData) {
     const supabase = await createClient();
@@ -11,10 +12,20 @@ export async function createExpense(formData: FormData) {
         return { error: "Unauthorized" };
     }
 
-    const category = formData.get("category") as string;
-    const description = formData.get("description") as string;
-    const amount = parseFloat(formData.get("amount") as string);
-    const date = formData.get("date") as string;
+    // Validate input with Zod
+    const validation = expenseSchema.safeParse({
+        category: formData.get("category"),
+        description: formData.get("description") || undefined,
+        amount: Number(formData.get("amount")),
+        date: formData.get("date") || new Date().toISOString().split('T')[0],
+    });
+
+    if (!validation.success) {
+        const firstError = validation.error.issues[0];
+        return { error: firstError.message };
+    }
+
+    const { category, description, amount, date } = validation.data;
 
     const { error } = await supabase
         .from('expenses')
@@ -23,7 +34,7 @@ export async function createExpense(formData: FormData) {
             category,
             amount,
             description,
-            date: date || new Date().toISOString().split('T')[0]
+            date
         });
 
     if (error) {
@@ -63,18 +74,31 @@ export async function getFinancialSummary() {
     };
 }
 
-export async function getExpenses() {
+export async function getExpenses(page: number = 1, limit: number = 20) {
     const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
 
-    const { data, error } = await supabase
+    if (!user) return { expenses: [], total: 0, page, limit };
+
+    // Calculate range for pagination
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
+    const { data, error, count } = await supabase
         .from('expenses')
-        .select('*')
-        .order('date', { ascending: false });
+        .select('*', { count: 'exact' })
+        .order('date', { ascending: false })
+        .range(from, to);
 
     if (error) {
         console.error('Error fetching expenses:', error);
-        return [];
+        return { expenses: [], total: 0, page, limit };
     }
 
-    return data;
+    return {
+        expenses: data || [],
+        total: count || 0,
+        page,
+        limit
+    };
 }

@@ -16,12 +16,6 @@ export async function getUserSubscription(): Promise<'free' | 'monthly' | 'yearl
             .eq('id', user.id)
             .single();
 
-        // For DEMO purposes: Force Pro plan
-        console.log("DEMO MODE: Returning 'monthly' plan");
-        return 'monthly';
-
-        // Original Logic (Commented out for demo)
-        /*
         if (error || !data) return 'free';
 
         // Type casting validation
@@ -31,10 +25,8 @@ export async function getUserSubscription(): Promise<'free' | 'monthly' | 'yearl
         }
 
         return 'free';
-        */
     } catch (error) {
         console.error("Error fetching subscription:", error);
-        // return 'free';
-        return 'monthly'; // Fallback to Pro for demo
+        return 'free';
     }
 }

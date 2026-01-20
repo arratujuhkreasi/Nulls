@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google"; // Changing font to generic clean ones or keep Geist? User said "clean". Outfit is great for headers.
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+
+// Validate environment variables on startup (will throw if invalid)
+import "@/lib/env";
 
 // Using Outfit for headings and Inter for body for that "Modern/Dribbble" look
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-heading" });
@@ -24,7 +28,9 @@ export default function RootLayout({
         className={`${outfit.variable} ${inter.variable} antialiased bg-white text-gray-900 font-sans`}
       >
         <script dangerouslySetInnerHTML={{ __html: `console.log('%c NULLS V2.1 LOADED ', 'background: #714B67; color: #fff; font-size: 20px;');` }} />
-        {children}
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
       </body>
     </html>
   );
