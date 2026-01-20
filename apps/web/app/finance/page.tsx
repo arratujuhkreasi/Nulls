@@ -11,8 +11,8 @@ export default async function FinancePage() {
         <div className="p-8 max-w-7xl mx-auto space-y-8">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Financial Overview</h1>
-                    <p className="text-gray-500">Track your business profitability in real-time.</p>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Ringkasan Keuangan</h1>
+                    <p className="text-gray-500">Lacak profitabilitas bisnis Anda secara real-time.</p>
                 </div>
                 <FinanceClientWrapper />
             </div>
@@ -26,7 +26,7 @@ export default async function FinancePage() {
                         <div className="p-3 bg-green-100 w-fit rounded-2xl mb-4">
                             <TrendingUp className="w-6 h-6 text-green-600" />
                         </div>
-                        <p className="text-sm font-medium text-gray-500 mb-1">Total Revenue</p>
+                        <p className="text-sm font-medium text-gray-500 mb-1">Total Pendapatan</p>
                         <h3 className="text-3xl font-bold text-gray-900">
                             {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.revenue)}
                         </h3>
@@ -40,7 +40,7 @@ export default async function FinancePage() {
                         <div className="p-3 bg-red-100 w-fit rounded-2xl mb-4">
                             <TrendingDown className="w-6 h-6 text-red-600" />
                         </div>
-                        <p className="text-sm font-medium text-gray-500 mb-1">Total Expenses</p>
+                        <p className="text-sm font-medium text-gray-500 mb-1">Total Pengeluaran</p>
                         <h3 className="text-3xl font-bold text-gray-900">
                             {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.expenses)}
                         </h3>
@@ -54,7 +54,7 @@ export default async function FinancePage() {
                         <div className="p-3 bg-white/20 w-fit rounded-2xl mb-4 backdrop-blur-sm">
                             <Wallet className="w-6 h-6 text-white" />
                         </div>
-                        <p className="text-sm font-medium text-indigo-100 mb-1">Net Profit</p>
+                        <p className="text-sm font-medium text-indigo-100 mb-1">Laba Bersih</p>
                         <h3 className="text-3xl font-bold">
                             {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.profit)}
                         </h3>
@@ -62,26 +62,25 @@ export default async function FinancePage() {
                 </div>
             </div>
 
-            {/* Expenses Table */}
             <div className="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-gray-100">
-                    <h3 className="text-lg font-semibold text-gray-900">Recent Expenses</h3>
+                    <h3 className="text-lg font-semibold text-gray-900">Pengeluaran Terbaru</h3>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider font-semibold">
                             <tr>
-                                <th className="px-6 py-4">Date</th>
-                                <th className="px-6 py-4">Category</th>
-                                <th className="px-6 py-4">Description</th>
-                                <th className="px-6 py-4 text-right">Amount</th>
+                                <th className="px-6 py-4">Tanggal</th>
+                                <th className="px-6 py-4">Kategori</th>
+                                <th className="px-6 py-4">Deskripsi</th>
+                                <th className="px-6 py-4 text-right">Jumlah</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {expenses.length === 0 ? (
                                 <tr>
                                     <td colSpan={4} className="px-6 py-12 text-center text-gray-400">
-                                        No expenses recorded yet.
+                                        Belum ada pengeluaran tercatat.
                                     </td>
                                 </tr>
                             ) : (
