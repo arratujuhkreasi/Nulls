@@ -22,7 +22,7 @@ export default async function FinancePage() {
             </div>
 
             {/* Widgets */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
                 {/* Revenue */}
                 <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform" />
@@ -30,9 +30,37 @@ export default async function FinancePage() {
                         <div className="p-3 bg-green-100 w-fit rounded-2xl mb-4">
                             <TrendingUp className="w-6 h-6 text-green-600" />
                         </div>
-                        <p className="text-sm font-medium text-gray-500 mb-1">Total Pendapatan</p>
-                        <h3 className="text-3xl font-bold text-gray-900">
-                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.revenue)}
+                        <p className="text-sm font-medium text-gray-500 mb-1">Pendapatan</p>
+                        <h3 className="text-2xl font-bold text-gray-900">
+                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.revenue)}
+                        </h3>
+                    </div>
+                </div>
+
+                {/* COGS / HPP */}
+                <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform" />
+                    <div className="relative">
+                        <div className="p-3 bg-orange-100 w-fit rounded-2xl mb-4">
+                            <DollarSign className="w-6 h-6 text-orange-600" />
+                        </div>
+                        <p className="text-sm font-medium text-gray-500 mb-1">HPP (COGS)</p>
+                        <h3 className="text-2xl font-bold text-gray-900">
+                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.cogs)}
+                        </h3>
+                    </div>
+                </div>
+
+                {/* Gross Profit */}
+                <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform" />
+                    <div className="relative">
+                        <div className="p-3 bg-blue-100 w-fit rounded-2xl mb-4">
+                            <TrendingUp className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <p className="text-sm font-medium text-gray-500 mb-1">Laba Kotor</p>
+                        <h3 className="text-2xl font-bold text-gray-900">
+                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.grossProfit)}
                         </h3>
                     </div>
                 </div>
@@ -44,14 +72,14 @@ export default async function FinancePage() {
                         <div className="p-3 bg-red-100 w-fit rounded-2xl mb-4">
                             <TrendingDown className="w-6 h-6 text-red-600" />
                         </div>
-                        <p className="text-sm font-medium text-gray-500 mb-1">Total Pengeluaran</p>
-                        <h3 className="text-3xl font-bold text-gray-900">
-                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.expenses)}
+                        <p className="text-sm font-medium text-gray-500 mb-1">Biaya Operasional</p>
+                        <h3 className="text-2xl font-bold text-gray-900">
+                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.expenses)}
                         </h3>
                     </div>
                 </div>
 
-                {/* Profit */}
+                {/* Net Profit */}
                 <div className="bg-gradient-to-br from-indigo-600 to-violet-700 p-6 rounded-3xl shadow-lg relative overflow-hidden text-white">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-12 -mt-12" />
                     <div className="relative">
@@ -59,8 +87,8 @@ export default async function FinancePage() {
                             <Wallet className="w-6 h-6 text-white" />
                         </div>
                         <p className="text-sm font-medium text-indigo-100 mb-1">Laba Bersih</p>
-                        <h3 className="text-3xl font-bold">
-                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(summary.profit)}
+                        <h3 className="text-2xl font-bold">
+                            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.profit)}
                         </h3>
                     </div>
                 </div>
