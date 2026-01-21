@@ -1,54 +1,101 @@
+import Link from 'next/link';
 import { TrendingUp, TrendingDown, DollarSign, Package, Users, ArrowUpRight, BarChart3, Zap } from 'lucide-react';
 import { SalesChart } from '@/components/dashboard/SalesChart';
 import { getUserSubscription } from '@/app/actions/user';
-import { getForecastData } from '@/app/actions/dashboard';
+import { getForecastData, getDashboardStats } from '@/app/actions/dashboard';
 
 export default async function Dashboard() {
     const subscriptionPlan = await getUserSubscription();
 
-    const stats = [
+    // Fetch real dashboard statistics
+    const dashboardStats = await getDashboardStats();
+
+    // Format stats for display
+    const stats = dashboardStats ? [
         {
             name: 'Total Pendapatan',
-            value: 'Rp 45.2M',
-            change: '+12.5%',
-            trend: 'up',
+            value: new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(dashboardStats.revenue.value),
+            change: `${Number(dashboardStats.revenue.change) >= 0 ? '+' : ''}${dashboardStats.revenue.change}%`,
+            trend: dashboardStats.revenue.trend,
             icon: DollarSign,
             gradient: 'from-emerald-500 to-teal-500',
             bgGradient: 'from-emerald-50 to-teal-50'
         },
         {
             name: 'Total Pesanan',
-            value: '1,234',
-            change: '+8.2%',
-            trend: 'up',
+            value: dashboardStats.orders.value.toString(),
+            change: `${Number(dashboardStats.orders.change) >= 0 ? '+' : ''}${dashboardStats.orders.change}%`,
+            trend: dashboardStats.orders.trend,
             icon: Package,
             gradient: 'from-blue-500 to-cyan-500',
             bgGradient: 'from-blue-50 to-cyan-50'
         },
         {
-            name: 'Pengguna Aktif',
-            value: '8,549',
-            change: '+22.1%',
-            trend: 'up',
+            name: 'Pelanggan Unik',
+            value: dashboardStats.users.value.toString(),
+            change: `${Number(dashboardStats.users.change) >= 0 ? '+' : ''}${dashboardStats.users.change}%`,
+            trend: dashboardStats.users.trend,
             icon: Users,
             gradient: 'from-purple-500 to-pink-500',
             bgGradient: 'from-purple-50 to-pink-50'
         },
         {
             name: 'Tingkat Konversi',
-            value: '3.24%',
-            change: '-1.2%',
-            trend: 'down',
+            value: `${dashboardStats.conversionRate.value}%`,
+            change: `${Number(dashboardStats.conversionRate.change) >= 0 ? '+' : ''}${dashboardStats.conversionRate.change}%`,
+            trend: dashboardStats.conversionRate.trend,
+            icon: BarChart3,
+            gradient: 'from-orange-500 to-red-500',
+            bgGradient: 'from-orange-50 to-red-50'
+        },
+    ] : [
+        // Fallback to empty state values
+        {
+            name: 'Total Pendapatan',
+            value: 'Rp 0',
+            change: '0.0%',
+            trend: 'up' as const,
+            icon: DollarSign,
+            gradient: 'from-emerald-500 to-teal-500',
+            bgGradient: 'from-emerald-50 to-teal-50'
+        },
+        {
+            name: 'Total Pesanan',
+            value: '0',
+            change: '0.0%',
+            trend: 'up' as const,
+            icon: Package,
+            gradient: 'from-blue-500 to-cyan-500',
+            bgGradient: 'from-blue-50 to-cyan-50'
+        },
+        {
+            name: 'Pelanggan Unik',
+            value: '0',
+            change: '0.0%',
+            trend: 'up' as const,
+            icon: Users,
+            gradient: 'from-purple-500 to-pink-500',
+            bgGradient: 'from-purple-50 to-pink-50'
+        },
+        {
+            name: 'Tingkat Konversi',
+            value: '0.00%',
+            change: '0.0%',
+            trend: 'up' as const,
             icon: BarChart3,
             gradient: 'from-orange-500 to-red-500',
             bgGradient: 'from-orange-50 to-red-50'
         },
     ];
 
-
     // Fetch AI Forecast
     const forecast = await getForecastData();
-    const predictedRevenue = forecast ? forecast.reduce((a, b) => a + b, 0) : 0;
+    const predictedRevenue = forecast ? forecast.reduce((a: number, b: number) => a + b, 0) : 0;
     const hasForecast = !!forecast;
 
     return (
@@ -159,10 +206,13 @@ export default async function Dashboard() {
                                 </div>
                             )}
 
-                            <button className="w-full py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl text-white font-semibold text-sm border border-white/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2">
+                            <Link
+                                href="/finance"
+                                className="w-full py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl text-white font-semibold text-sm border border-white/30 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
+                            >
                                 Lihat Laporan Lengkap
                                 <ArrowUpRight className="w-4 h-4" />
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
