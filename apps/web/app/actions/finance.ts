@@ -50,27 +50,40 @@ export async function getFinancialSummary() {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    if (!user) return { revenue: 0, expenses: 0, profit: 0 };
+    if (!user) return { revenue: 0, expenses: 0, profit: 0, cogs: 0, grossProfit: 0 };
 
-    // Get Total Revenue (Mocked via random for demo if no transactions, else real)
-    // For now, let's fetch real if exists, else return 0
+    // Get total revenue from transactions
     const { data: transactions } = await supabase
         .from('transactions')
         .select('total_amount');
 
-    const totalRevenue = transactions?.reduce((sum, t) => sum + Number(t.total_amount), 0) || 0;
+    const revenue = transactions?.reduce((sum, t) => sum + Number(t.total_amount), 0) || 0;
 
-    // Get Total Expenses
-    const { data: expenses } = await supabase
+    // Get COGS (HPP) from product_analytics
+    const { data: productAnalytics } = await supabase
+        .from('product_analytics')
+        .select('total_cost')
+        .eq('user_id', user.id);
+
+    const cogs = productAnalytics?.reduce((sum, p) => sum + Number(p.total_cost), 0) || 0;
+
+    // Get total expenses
+    const { data: expensesData } = await supabase
         .from('expenses')
         .select('amount');
 
-    const totalExpenses = expenses?.reduce((sum, e) => sum + Number(e.amount), 0) || 0;
+    const expenses = expensesData?.reduce((sum, e) => sum + Number(e.amount), 0) || 0;
+
+    // Calculate profits
+    const grossProfit = revenue - cogs; // Laba Kotor = Revenue - HPP
+    const netProfit = grossProfit - expenses; // Laba Bersih = Laba Kotor - Biaya Operasional
 
     return {
-        revenue: totalRevenue,
-        expenses: totalExpenses,
-        profit: totalRevenue - totalExpenses
+        revenue,
+        expenses,
+        cogs,
+        grossProfit,
+        profit: netProfit
     };
 }
 

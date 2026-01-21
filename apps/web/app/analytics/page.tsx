@@ -32,7 +32,7 @@ export default async function AnalyticsPage() {
                             <div className="p-3 bg-green-100 w-fit rounded-2xl mb-4">
                                 <DollarSign className="w-6 h-6 text-green-600" />
                             </div>
-                            <p className="text-sm font-medium text-gray-500 mb-1">Total Revenue</p>
+                            <p className="text-sm font-medium text-gray-500 mb-1">Total Pendapatan</p>
                             <h3 className="text-3xl font-bold text-gray-900">
                                 {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.total_revenue)}
                             </h3>
@@ -45,7 +45,7 @@ export default async function AnalyticsPage() {
                             <div className="p-3 bg-indigo-100 w-fit rounded-2xl mb-4">
                                 <TrendingUp className="w-6 h-6 text-indigo-600" />
                             </div>
-                            <p className="text-sm font-medium text-gray-500 mb-1">Total Profit</p>
+                            <p className="text-sm font-medium text-gray-500 mb-1">Total Keuntungan</p>
                             <h3 className="text-3xl font-bold text-gray-900">
                                 {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(summary.total_profit)}
                             </h3>
@@ -58,7 +58,7 @@ export default async function AnalyticsPage() {
                             <div className="p-3 bg-purple-100 w-fit rounded-2xl mb-4">
                                 <Package className="w-6 h-6 text-purple-600" />
                             </div>
-                            <p className="text-sm font-medium text-gray-500 mb-1">Items Terjual</p>
+                            <p className="text-sm font-medium text-gray-500 mb-1">Barang Terjual</p>
                             <h3 className="text-3xl font-bold text-gray-900">
                                 {summary.total_items_sold.toLocaleString('id-ID')}
                             </h3>
@@ -71,7 +71,7 @@ export default async function AnalyticsPage() {
                             <div className="p-3 bg-yellow-100 w-fit rounded-2xl mb-4">
                                 <TrendingDown className="w-6 h-6 text-yellow-600" />
                             </div>
-                            <p className="text-sm font-medium text-gray-500 mb-1">Avg Profit Margin</p>
+                            <p className="text-sm font-medium text-gray-500 mb-1">Margin Rata-rata</p>
                             <h3 className="text-3xl font-bold text-gray-900">{summary.avg_profit_margin.toFixed(1)}%</h3>
                         </div>
                     </div>
@@ -86,8 +86,8 @@ export default async function AnalyticsPage() {
                             <TrendingUp className="w-6 h-6 text-green-600" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-gray-900">Best Sellers</h2>
-                            <p className="text-sm text-gray-500">Produk terlaris berdasarkan revenue</p>
+                            <h2 className="text-xl font-bold text-gray-900">Produk Terlaris</h2>
+                            <p className="text-sm text-gray-500">Berdasarkan pendapatan</p>
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@ export default async function AnalyticsPage() {
                             <AlertTriangle className="w-6 h-6 text-yellow-600" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-gray-900">Slow Movers</h2>
+                            <h2 className="text-xl font-bold text-gray-900">Produk Lambat Terjual</h2>
                             <p className="text-sm text-gray-500">Produk dengan penjualan rendah</p>
                         </div>
                     </div>
@@ -165,7 +165,7 @@ export default async function AnalyticsPage() {
                             <PackageX className="w-6 h-6 text-red-600" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-bold text-gray-900">Low Stock Alert</h2>
+                            <h2 className="text-xl font-bold text-gray-900">Peringatan Stok Menipis</h2>
                             <p className="text-sm text-gray-500">{lowStock.length} produk perlu restock</p>
                         </div>
                     </div>

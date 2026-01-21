@@ -17,7 +17,7 @@ export async function TopCustomersWidget() {
                         <Users className="w-6 h-6 text-indigo-600" />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-gray-900">Top Customers</h3>
+                        <h3 className="text-lg font-bold text-gray-900">Pelanggan Teratas</h3>
                         <p className="text-sm text-gray-500">Berdasarkan total pembelian</p>
                     </div>
                 </div>

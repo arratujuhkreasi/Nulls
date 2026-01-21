@@ -17,7 +17,7 @@ export async function BestProductsWidget() {
                         <TrendingUp className="w-6 h-6 text-green-600" />
                     </div>
                     <div>
-                        <h3 className="text-lg font-bold text-gray-900">Best Products</h3>
+                        <h3 className="text-lg font-bold text-gray-900">Produk Terlaris</h3>
                         <p className="text-sm text-gray-500">Produk terlaris bulan ini</p>
                     </div>
                 </div>
