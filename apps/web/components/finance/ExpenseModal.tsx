@@ -91,7 +91,7 @@ export function ExpenseModal({ isOpen, onClose }: ExpenseModalProps) {
                             onClick={onClose}
                             className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                            Cancel
+                            Batal
                         </button>
                         <button
                             type="submit"
@@ -99,7 +99,7 @@ export function ExpenseModal({ isOpen, onClose }: ExpenseModalProps) {
                             className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-lg shadow-indigo-200 transition-all flex items-center gap-2"
                         >
                             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                            Save Expense
+                            Simpan Pengeluaran
                         </button>
                     </div>
                 </form>

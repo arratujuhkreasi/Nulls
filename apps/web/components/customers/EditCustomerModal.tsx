@@ -43,7 +43,7 @@ export function EditCustomerModal({ customer, onClose }: EditCustomerModalProps)
                     <X className="w-5 h-5 text-gray-500" />
                 </button>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Edit Customer</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Ubah Data Customer</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {error && (

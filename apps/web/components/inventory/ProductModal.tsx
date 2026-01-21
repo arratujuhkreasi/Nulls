@@ -45,7 +45,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden animate-in fade-in zoom-in duration-200">
                 <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                     <h3 className="font-semibold text-lg text-gray-900">
-                        {productToEdit ? "Edit Product" : "Add New Product"}
+                        {productToEdit ? "Ubah Produk" : "Tambah Produk Baru"}
                     </h3>
                     <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
                         <X className="w-5 h-5" />
@@ -54,7 +54,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
 
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                     <div className="space-y-1">
-                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Product Name</label>
+                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Nama Produk</label>
                         <input
                             name="name"
                             defaultValue={productToEdit?.name}
@@ -66,7 +66,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">SKU / Code</label>
+                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Kode SKU</label>
                             <input
                                 name="sku"
                                 defaultValue={productToEdit?.sku}
@@ -76,7 +76,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
                             />
                         </div>
                         <div className="space-y-1">
-                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Stock Qty</label>
+                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Jumlah Stok</label>
                             <input
                                 name="stock"
                                 type="number"
@@ -91,7 +91,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1">
-                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Buy Price (Rp)</label>
+                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Harga Beli (Rp)</label>
                             <input
                                 name="buy_price"
                                 type="number"
@@ -103,7 +103,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
                             />
                         </div>
                         <div className="space-y-1">
-                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sell Price (Rp)</label>
+                            <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Harga Jual (Rp)</label>
                             <input
                                 name="sell_price"
                                 type="number"
@@ -122,7 +122,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
                             onClick={onClose}
                             className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                         >
-                            Cancel
+                            Batal
                         </button>
                         <button
                             type="submit"
@@ -130,7 +130,7 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
                             className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-lg shadow-indigo-200 transition-all flex items-center gap-2"
                         >
                             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
-                            {productToEdit ? "Save Changes" : "Create Product"}
+                            {productToEdit ? "Simpan Perubahan" : "Buat Produk"}
                         </button>
                     </div>
                 </form>

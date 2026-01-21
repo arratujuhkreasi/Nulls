@@ -40,7 +40,7 @@ export function ProductTable({ products }: ProductTableProps) {
     };
 
     const handleDelete = async (id: string) => {
-        if (confirm("Are you sure you want to delete this product?")) {
+        if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
             await deleteProduct(id);
         }
     };
@@ -48,13 +48,13 @@ export function ProductTable({ products }: ProductTableProps) {
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-gray-800 tracking-tight">Inventory</h2>
+                <h2 className="text-2xl font-bold text-gray-800 tracking-tight">Daftar Produk</h2>
                 <button
                     onClick={handleAdd}
                     className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-medium shadow-lg shadow-indigo-200 transition-all hover:-translate-y-0.5"
                 >
                     <Plus className="w-5 h-5" />
-                    Add Product
+                    Tambah Produk
                 </button>
             </div>
 
@@ -64,9 +64,9 @@ export function ProductTable({ products }: ProductTableProps) {
                         <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
                             <Box className="w-10 h-10 text-gray-300" />
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">No Products Yet</h3>
+                        <h3 className="text-lg font-semibold text-gray-900">Belum Ada Produk</h3>
                         <p className="text-gray-500 max-w-sm mt-1">
-                            Your inventory is empty. Start by adding your first product to track sales.
+                            Inventaris Anda masih kosong. Mulai dengan menambahkan produk pertama Anda.
                         </p>
                     </div>
                 ) : (
@@ -74,12 +74,12 @@ export function ProductTable({ products }: ProductTableProps) {
                         <table className="w-full text-left">
                             <thead className="bg-gray-50/50 border-b border-gray-100">
                                 <tr>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Product Name</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Nama Produk</th>
                                     <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">SKU</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Stock</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Price (Buy)</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Price (Sell)</th>
-                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Stok</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Harga Beli</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Harga Jual</th>
+                                    <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
