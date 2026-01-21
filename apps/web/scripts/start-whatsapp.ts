@@ -1,4 +1,4 @@
-import { init WhatsAppClient } from '../lib/whatsapp/client';
+import { initWhatsAppClient } from '../lib/whatsapp/client';
 
 async function main() {
     console.log('🚀 Menginisialisasi WhatsApp Client...');
