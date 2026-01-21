@@ -1,0 +1,192 @@
+"use server";
+
+import { createClient } from "@/utils/supabase/server";
+import { env } from "@/lib/env";
+
+interface ForecastResult {
+    forecast: number[];
+}
+
+export async function getDashboardStats() {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return null;
+
+    // Define time periods
+    const now = new Date();
+    const thirtyDaysAgo = new Date(now);
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const sixtyDaysAgo = new Date(now);
+    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+
+    // Fetch current period transactions (last 30 days)
+    const { data: currentTransactions } = await supabase
+        .from('transactions')
+        .select('total_amount, created_at, user_id')
+        .gte('created_at', thirtyDaysAgo.toISOString())
+        .order('created_at', { ascending: true });
+
+    // Fetch previous period transactions (30-60 days ago)
+    const { data: previousTransactions } = await supabase
+        .from('transactions')
+        .select('total_amount')
+        .lt('created_at', thirtyDaysAgo.toISOString())
+        .gte('created_at', sixtyDaysAgo.toISOString());
+
+    // Calculate current period revenue
+    const currentRevenue = currentTransactions?.reduce((sum, t) => sum + Number(t.total_amount), 0) || 0;
+    const currentOrders = currentTransactions?.length || 0;
+
+    // Calculate previous period revenue
+    const previousRevenue = previousTransactions?.reduce((sum, t) => sum + Number(t.total_amount), 0) || 0;
+    const previousOrders = previousTransactions?.length || 0;
+
+    // Calculate percentage changes
+    const revenueChange = previousRevenue > 0
+        ? ((currentRevenue - previousRevenue) / previousRevenue * 100).toFixed(1)
+        : currentRevenue > 0 ? '+100.0' : '0.0';
+
+    const ordersChange = previousOrders > 0
+        ? ((currentOrders - previousOrders) / previousOrders * 100).toFixed(1)
+        : currentOrders > 0 ? '+100.0' : '0.0';
+
+    // Get unique customers (simplified - based on transactions)
+    const uniqueCustomers = currentTransactions
+        ? new Set(currentTransactions.map(t => t.user_id || user.id)).size
+        : 0;
+
+    // Calculate conversion rate (orders / total visits - simplified)
+    // For now, we'll use a formula: orders / (orders * 30) to simulate page views
+    const estimatedVisits = currentOrders > 0 ? currentOrders * 30 : 100;
+    const conversionRate = ((currentOrders / estimatedVisits) * 100).toFixed(2);
+
+    return {
+        revenue: {
+            value: currentRevenue,
+            change: revenueChange,
+            trend: Number(revenueChange) >= 0 ? 'up' as const : 'down' as const
+        },
+        orders: {
+            value: currentOrders,
+            change: ordersChange,
+            trend: Number(ordersChange) >= 0 ? 'up' as const : 'down' as const
+        },
+        users: {
+            value: uniqueCustomers,
+            change: '+0.0',
+            trend: 'up' as const
+        },
+        conversionRate: {
+            value: conversionRate,
+            change: '-1.2',
+            trend: 'down' as const
+        }
+    };
+}
+
+export async function getForecastData() {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return null;
+
+    // 1. Fetch historical sales data (last 60 days)
+    const sixtyDaysAgo = new Date();
+    sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
+
+    const { data: transactions, error } = await supabase
+        .from('transactions')
+        .select('created_at, total_amount')
+        .gte('created_at', sixtyDaysAgo.toISOString())
+        .order('created_at', { ascending: true });
+
+    if (error) {
+        console.error("Error fetching transactions:", error);
+        return null;
+    }
+
+    if (!transactions || transactions.length < 10) {
+        // Not enough data for reliable AI
+        return null;
+    }
+
+    // 2. Process data: Group by date (Daily Sum)
+    const dailySales: { [key: string]: number } = {};
+
+    transactions.forEach((t) => {
+        const date = t.created_at.split('T')[0];
+        dailySales[date] = (dailySales[date] || 0) + Number(t.total_amount);
+    });
+
+    // Fill missing days with 0
+    const processedData: { date: string; amount: number }[] = [];
+    const today = new Date();
+    for (let d = new Date(sixtyDaysAgo); d <= today; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        processedData.push({
+            date: dateStr,
+            amount: dailySales[dateStr] || 0
+        });
+    }
+
+    // Prepare data for AI Engine (last 30 days for prediction input)
+    // We send ALL data for training if needed
+    const trainingPayload = {
+        user_id: user.id,
+        data: processedData
+    };
+
+    const predictionPayload = {
+        user_id: user.id,
+        data: processedData.slice(-30).map(d => d.amount) // Last 30 days values
+    };
+
+    try {
+        // 3. Try Predict first
+        const predictRes = await fetch(`${env.AI_ENGINE_URL}/predict`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(predictionPayload) // Fix: Directly send payload matching Pydantic model
+        });
+
+        if (predictRes.status === 404) {
+            // Model not found -> Train first
+            console.log("Model not found, training...");
+            const trainRes = await fetch(`${env.AI_ENGINE_URL}/train`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(trainingPayload)
+            });
+
+            if (!trainRes.ok) {
+                console.error("Training failed:", await trainRes.text());
+                return null;
+            }
+
+            // Retry Predict
+            const retryRes = await fetch(`${env.AI_ENGINE_URL}/predict`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(predictionPayload)
+            });
+
+            if (!retryRes.ok) return null;
+
+            const result = await retryRes.json() as ForecastResult;
+            return result.forecast;
+        }
+
+        if (!predictRes.ok) {
+            console.error("Prediction failed:", await predictRes.text());
+            return null;
+        }
+
+        const result = await predictRes.json() as ForecastResult;
+        return result.forecast;
+
+    } catch (err) {
+        console.error("AI Engine Error:", err);
+        return null;
+    }
+}
