@@ -39,8 +39,8 @@ export default function LoginPage({
                     <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mx-auto mb-4">
                         <Lock className="w-6 h-6 text-white" />
                     </div>
-                    <h1 className="text-2xl font-bold font-heading">Welcome Back</h1>
-                    <p className="text-indigo-100 mt-2 text-sm">Sign in with your Google account.</p>
+                    <h1 className="text-2xl font-bold font-heading">Selamat Datang Kembali</h1>
+                    <p className="text-indigo-100 mt-2 text-sm">Masuk dengan akun Google Anda.</p>
                 </div>
 
                 {/* Form */}
@@ -68,7 +68,7 @@ export default function LoginPage({
                                     fill="#EA4335"
                                 />
                             </svg>
-                            Continue with Google
+                            Lanjutkan dengan Google
                         </button>
 
                         {searchParams?.message && (
@@ -79,7 +79,7 @@ export default function LoginPage({
                     </form>
 
                     <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-                        <p className="text-gray-400 text-xs">Protected by Arland Jova Security</p>
+                        <p className="text-gray-400 text-xs">Dilindungi oleh Arland Jova Security</p>
                     </div>
                 </div>
             </div>
