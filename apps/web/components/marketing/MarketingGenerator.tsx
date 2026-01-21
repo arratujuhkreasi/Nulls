@@ -118,7 +118,7 @@ export function MarketingGenerator() {
                     {result ? result : (
                         <div className="h-full flex flex-col items-center justify-center text-gray-400 opacity-60">
                             <Wand2 className="w-12 h-12 mb-3" />
-                            <p>Enter details and hit Generate</p>
+                            <p>Isi detail dan klik Generate</p>
                         </div>
                     )}
                 </div>
