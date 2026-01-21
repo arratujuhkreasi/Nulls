@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, Package, Users, ArrowUpRight, BarChart3, Zap } from 'lucide-react';
 import { SalesChartWrapper } from '@/components/dashboard/SalesChartWrapper';
+import { DashboardLoadingSkeleton } from '@/components/dashboard/DashboardLoadingSkeleton';
 import { getUserSubscription } from '@/app/actions/user';
 import { getForecastData, getDashboardStats } from '@/app/actions/dashboard';
 
-export default async function Dashboard() {
+async function DashboardContent() {
     const subscriptionPlan = await getUserSubscription();
 
     // Fetch real dashboard statistics
