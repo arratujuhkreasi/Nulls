@@ -6,7 +6,7 @@ import { SalesChart } from './SalesChart';
 type TimeFrame = 'monthly' | 'weekly';
 
 interface SalesChartWrapperProps {
-    subscriptionPlan: string;
+    subscriptionPlan: 'free' | 'monthly' | 'yearly';
 }
 
 export function SalesChartWrapper({ subscriptionPlan }: SalesChartWrapperProps) {
@@ -29,8 +29,8 @@ export function SalesChartWrapper({ subscriptionPlan }: SalesChartWrapperProps) 
                         <button
                             onClick={() => setTimeFrame('monthly')}
                             className={`px-4 py-2 rounded-lg text-xs font-bold transition-all hover:scale-105 ${timeFrame === 'monthly'
-                                    ? 'bg-white shadow-sm text-slate-800'
-                                    : 'text-slate-500 hover:text-slate-700'
+                                ? 'bg-white shadow-sm text-slate-800'
+                                : 'text-slate-500 hover:text-slate-700'
                                 }`}
                         >
                             Bulanan
@@ -38,8 +38,8 @@ export function SalesChartWrapper({ subscriptionPlan }: SalesChartWrapperProps) 
                         <button
                             onClick={() => setTimeFrame('weekly')}
                             className={`px-4 py-2 rounded-lg text-xs font-bold transition-all hover:scale-105 ${timeFrame === 'weekly'
-                                    ? 'bg-white shadow-sm text-slate-800'
-                                    : 'text-slate-500 hover:text-slate-700'
+                                ? 'bg-white shadow-sm text-slate-800'
+                                : 'text-slate-500 hover:text-slate-700'
                                 }`}
                         >
                             Mingguan
