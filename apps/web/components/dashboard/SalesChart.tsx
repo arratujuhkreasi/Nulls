@@ -7,19 +7,23 @@ import { getSalesForecast } from '@/app/actions/forecast';
 
 interface SalesChartProps {
     subscriptionPlan: 'free' | 'monthly' | 'yearly';
+    timeFrame?: 'monthly' | 'weekly';
 }
 
-export function SalesChart({ subscriptionPlan }: SalesChartProps) {
+export function SalesChart({ subscriptionPlan, timeFrame = 'monthly' }: SalesChartProps) {
     const isPro = subscriptionPlan !== 'free';
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
-        // 1. Generate Mock History Data (Last 30 Days)
-        const mockHistory = Array.from({ length: 30 }, (_, i) => {
+        // Determine number of days based on timeFrame
+        const daysToShow = timeFrame === 'weekly' ? 7 : 30;
+
+        // 1. Generate Mock History Data
+        const mockHistory = Array.from({ length: daysToShow }, (_, i) => {
             const date = new Date();
-            date.setDate(date.getDate() - (29 - i));
+            date.setDate(date.getDate() - (daysToShow - 1 - i));
             return {
-                date: date.toLocaleDateString("en-US", { month: 'short', day: 'numeric' }),
+                date: date.toLocaleDateString("id-ID", { month: 'short', day: 'numeric' }),
                 sales: Math.floor(Math.random() * 5000) + 3000,
                 isPrediction: false
             };
@@ -80,7 +84,7 @@ export function SalesChart({ subscriptionPlan }: SalesChartProps) {
 
         fetchPrediction();
 
-    }, [isPro]);
+    }, [isPro, timeFrame]);
 
     const processedData = data.map((d, index) => {
         const isHistory = !d.isPrediction;
