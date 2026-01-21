@@ -2,6 +2,7 @@ import { getFinancialSummary, getExpenses } from "@/app/actions/finance";
 import { ExpenseModal } from "@/components/finance/ExpenseModal";
 import { Plus, TrendingUp, TrendingDown, DollarSign, Wallet } from "lucide-react";
 import FinanceClientWrapper from "@/components/finance/FinanceClientWrapper";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default async function FinancePage() {
     const summary = await getFinancialSummary();
@@ -9,6 +10,9 @@ export default async function FinancePage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8">
+            <div className="mb-6">
+                <BackButton />
+            </div>
             <div className="flex justify-between items-center">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Ringkasan Keuangan</h1>

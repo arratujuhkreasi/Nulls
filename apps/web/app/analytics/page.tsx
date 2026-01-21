@@ -1,4 +1,5 @@
 import { getBestSellers, getSlowMovers, getLowStockProducts, getProductAnalyticsSummary } from "@/app/actions/analytics";
+import { BackButton } from "@/components/ui/BackButton";
 import { TrendingUp, AlertTriangle, PackageX, DollarSign, Package, TrendingDown } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -13,6 +14,9 @@ export default async function AnalyticsPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8">
+            <div className="mb-6">
+                <BackButton />
+            </div>
             {/* Header */}
             <div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">Analytics Produk</h1>

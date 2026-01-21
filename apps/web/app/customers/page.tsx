@@ -1,6 +1,7 @@
 import { getCustomers, getCustomerSummary } from "@/app/actions/customers";
 import { CustomerTable } from "@/components/customers/CustomerTable";
 import { AddCustomerButton } from "@/components/customers/AddCustomerButton";
+import { BackButton } from "@/components/ui/BackButton";
 import { Users, TrendingUp, UserX, AlertCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +12,9 @@ export default async function CustomersPage() {
 
     return (
         <div className="p-8 max-w-7xl mx-auto space-y-8">
+            <div className="mb-6">
+                <BackButton />
+            </div>
             {/* Header */}
             <div className="flex justify-between items-center">
                 <div>
