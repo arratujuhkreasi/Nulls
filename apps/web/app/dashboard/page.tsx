@@ -3,6 +3,8 @@ import { Suspense } from 'react';
 import { TrendingUp, TrendingDown, DollarSign, Package, Users, ArrowUpRight, BarChart3, Zap } from 'lucide-react';
 import { SalesChartWrapper } from '@/components/dashboard/SalesChartWrapper';
 import { DashboardLoadingSkeleton } from '@/components/dashboard/DashboardLoadingSkeleton';
+import { TopCustomersWidget } from '@/components/dashboard/TopCustomersWidget';
+import { BestProductsWidget } from '@/components/dashboard/BestProductsWidget';
 import { getUserSubscription } from '@/app/actions/user';
 import { getForecastData, getDashboardStats } from '@/app/actions/dashboard';
 
@@ -236,6 +238,12 @@ async function DashboardContent() {
                         </div>
                     </a>
                 ))}
+            </div>
+
+            {/* New Analytics Widgets */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <TopCustomersWidget />
+                <BestProductsWidget />
             </div>
 
         </div>
