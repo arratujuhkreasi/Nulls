@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Box, DollarSign, Wallet, Megaphone, Sparkles } from 'lucide-react';
+import { Home, Box, DollarSign, Wallet, Megaphone, Sparkles, Users, BarChart3 } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 const MENU_ITEMS = [
@@ -10,6 +10,8 @@ const MENU_ITEMS = [
     { name: 'Inventaris', icon: Box, href: '/inventory' },
     { name: 'Keuangan', icon: Wallet, href: '/finance' },
     { name: 'Marketing', icon: Megaphone, href: '/marketing' },
+    { name: 'Customer', icon: Users, href: '/customers' },
+    { name: 'Analytics', icon: BarChart3, href: '/analytics' },
 ];
 
 export function Sidebar() {
