@@ -3,11 +3,13 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { Lock } from "lucide-react";
 
-export default function LoginPage({
+export default async function LoginPage({
     searchParams,
 }: {
-    searchParams: { message: string };
+    searchParams: Promise<{ message?: string }>;
 }) {
+    const params = await searchParams;
+
     const signInWithGoogle = async () => {
         "use server";
         const origin = (await headers()).get("origin");
@@ -70,9 +72,9 @@ export default function LoginPage({
                             Lanjutkan dengan Google
                         </button>
 
-                        {searchParams?.message && (
+                        {params?.message && (
                             <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg text-center mt-4">
-                                {searchParams.message}
+                                {params.message}
                             </div>
                         )}
                     </form>
