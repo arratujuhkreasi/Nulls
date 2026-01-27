@@ -115,6 +115,7 @@ export default async function FinancePage() {
                                     </td>
                                 </tr>
                             ) : (
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                 expenses.map((expense: any) => (
                                     <tr key={expense.id} className="hover:bg-gray-50/50 transition-colors">
                                         <td className="px-6 py-4 text-gray-600 font-medium">

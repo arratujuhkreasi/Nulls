@@ -51,7 +51,7 @@ export async function getWhatsAppStatus() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/whatsapp/status`);
         const data = await response.json();
         return data;
-    } catch (_error) {
+    } catch {
         return { connected: false, error: 'Gagal mengecek status' };
     }
 }

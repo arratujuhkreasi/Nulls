@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Customer } from "@/app/actions/customers";
-import { Edit2, Trash2, Eye, Phone, Mail, MapPin } from "lucide-react";
+import { Edit2, Eye, Phone, Mail, MapPin } from "lucide-react";
 import Link from "next/link";
 import { DeleteCustomerButton } from "./DeleteCustomerButton";
 import { EditCustomerModal } from "./EditCustomerModal";
@@ -102,7 +102,7 @@ export function CustomerTable({ customers, total }: CustomerTableProps) {
                                         >
                                             <Edit2 className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
                                         </button>
-                                        <DeleteCustomerButton customerId={customer.id} customerName={customer.name} />
+                                        <DeleteCustomerButton customerId={customer.id} />
                                     </div>
                                 </td>
                             </tr>

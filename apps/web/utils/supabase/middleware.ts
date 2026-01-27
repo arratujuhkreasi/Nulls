@@ -17,16 +17,14 @@ export async function updateSession(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, options }) =>
+                    cookiesToSet.forEach(({ name, value, _options }) =>
                         request.cookies.set(name, value)
                     )
                     response = NextResponse.next({
-                        request: {
-                            headers: request.headers,
-                        },
+                        request,
                     })
-                    cookiesToSet.forEach(({ name, value, options }) =>
-                        response.cookies.set(name, value, options)
+                    cookiesToSet.forEach(({ name, value, _options }) =>
+                        response.cookies.set(name, value, _options)
                     )
                 },
             },
