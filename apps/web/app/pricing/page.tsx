@@ -32,7 +32,7 @@ const PRICING_TIERS = [
     {
         name: "UMKM",
         description: "Berlangganan bulanan fleksibel",
-        price: 99000,
+        price: 49000,
         period: "/bulan",
         icon: Zap,
         color: "from-indigo-500 to-purple-600",
@@ -53,7 +53,7 @@ const PRICING_TIERS = [
     {
         name: "UMKM Lifetime",
         description: "Sekali bayar, aktif selamanya",
-        price: 999000,
+        price: 249000,
         period: "/selamanya",
         icon: Crown,
         color: "from-green-500 to-emerald-600",
