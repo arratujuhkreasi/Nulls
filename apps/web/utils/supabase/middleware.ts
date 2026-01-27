@@ -17,14 +17,15 @@ export async function updateSession(request: NextRequest) {
                     return request.cookies.getAll()
                 },
                 setAll(cookiesToSet) {
-                    cookiesToSet.forEach(({ name, value, _options }) =>
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    cookiesToSet.forEach(({ name, value, options }) =>
                         request.cookies.set(name, value)
                     )
                     response = NextResponse.next({
                         request,
                     })
-                    cookiesToSet.forEach(({ name, value, _options }) =>
-                        response.cookies.set(name, value, _options)
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        response.cookies.set(name, value, options)
                     )
                 },
             },
