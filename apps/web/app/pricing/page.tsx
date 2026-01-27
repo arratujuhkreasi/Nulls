@@ -11,8 +11,8 @@ const PRICING_TIERS = [
     {
         name: "Basic",
         description: "Untuk memulai digitalisasi bisnis Anda",
-        monthlyPrice: 0,
-        yearlyPrice: 0,
+        price: 0,
+        period: "/bulan",
         icon: Sparkles,
         color: "from-slate-500 to-slate-600",
         popular: false,
@@ -31,32 +31,11 @@ const PRICING_TIERS = [
     },
     {
         name: "UMKM",
-        description: "Untuk usaha kecil yang ingin berkembang",
-        monthlyPrice: 99000,
-        yearlyPrice: 990000,
+        description: "Berlangganan bulanan fleksibel",
+        price: 99000,
+        period: "/bulan",
         icon: Zap,
         color: "from-indigo-500 to-purple-600",
-        popular: true,
-        features: [
-            { name: "Dashboard Analytics", included: true, detail: "Full" },
-            { name: "Tracking Produk", included: true, detail: "100 produk" },
-            { name: "Database Customer", included: true, detail: "500 customer" },
-            { name: "AI Sales Prediction", included: true, detail: "7 hari" },
-            { name: "AI Marketing Content", included: true, detail: "10/bulan" },
-            { name: "WhatsApp Integration", included: true },
-            { name: "Export Laporan", included: true, detail: "PDF" },
-            { name: "Priority Support", included: true, detail: "Email" },
-        ],
-        cta: "Pilih UMKM",
-        ctaHref: "/login?plan=umkm",
-    },
-    {
-        name: "UMKM & Online Shop",
-        description: "Untuk bisnis dengan toko online",
-        monthlyPrice: 199000,
-        yearlyPrice: 1990000,
-        icon: Crown,
-        color: "from-green-500 to-emerald-600",
         popular: false,
         features: [
             { name: "Dashboard Analytics", included: true, detail: "Full + Real-time" },
@@ -64,18 +43,37 @@ const PRICING_TIERS = [
             { name: "Database Customer", included: true, detail: "Unlimited" },
             { name: "AI Sales Prediction", included: true, detail: "30 hari" },
             { name: "AI Marketing Content", included: true, detail: "Unlimited" },
-            { name: "WhatsApp Integration", included: true, detail: "+ Broadcast" },
+            { name: "WhatsApp Integration", included: true, detail: "Broadcast" },
             { name: "Export Laporan", included: true, detail: "PDF + Excel" },
             { name: "Priority Support", included: true, detail: "WhatsApp 24/7" },
         ],
-        cta: "Pilih UMKM & Online",
-        ctaHref: "/login?plan=umkm_online",
+        cta: "Pilih Bulanan",
+        ctaHref: "/login?plan=umkm_monthly",
+    },
+    {
+        name: "UMKM Lifetime",
+        description: "Sekali bayar, aktif selamanya",
+        price: 999000,
+        period: "/selamanya",
+        icon: Crown,
+        color: "from-green-500 to-emerald-600",
+        popular: true,
+        features: [
+            { name: "Dashboard Analytics", included: true, detail: "Full + Real-time" },
+            { name: "Tracking Produk", included: true, detail: "Unlimited" },
+            { name: "Database Customer", included: true, detail: "Unlimited" },
+            { name: "AI Sales Prediction", included: true, detail: "30 hari" },
+            { name: "AI Marketing Content", included: true, detail: "Unlimited" },
+            { name: "WhatsApp Integration", included: true, detail: "Broadcast" },
+            { name: "Export Laporan", included: true, detail: "PDF + Excel" },
+            { name: "Priority Support", included: true, detail: "WhatsApp 24/7" },
+        ],
+        cta: "Pilih Lifetime",
+        ctaHref: "/login?plan=umkm_lifetime",
     },
 ];
 
 export default function PricingPage() {
-    const [billingPeriod, setBillingPeriod] = useState<BillingPeriod>("monthly");
-
     const formatPrice = (price: number) => {
         if (price === 0) return "Gratis";
         return new Intl.NumberFormat("id-ID", {
@@ -117,51 +115,26 @@ export default function PricingPage() {
                         Harga Transparan, Tanpa Biaya Tersembunyi
                     </div>
                     <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">
-                        Pilih Paket yang <br />
+                        Investasi Terbaik untuk <br />
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
-                            Sesuai Bisnis Anda
+                            Pertumbuhan Bisnis Anda
                         </span>
                     </h1>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-                        Mulai gratis dan upgrade kapan saja. Semua paket termasuk akses ke fitur dasar dashboard.
+                        Pilih fleksibilitas bulanan atau hemat jutaan rupiah dengan paket Lifetime.
                     </p>
                 </div>
 
-                {/* Billing Toggle */}
-                <div className="flex items-center justify-center gap-4 mb-12">
-                    <span className={`font-medium ${billingPeriod === "monthly" ? "text-slate-900" : "text-slate-400"}`}>
-                        Bulanan
-                    </span>
-                    <button
-                        onClick={() => setBillingPeriod(billingPeriod === "monthly" ? "yearly" : "monthly")}
-                        className={`relative w-16 h-8 rounded-full transition-colors ${billingPeriod === "yearly" ? "bg-indigo-600" : "bg-slate-300"
-                            }`}
-                    >
-                        <div
-                            className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform ${billingPeriod === "yearly" ? "translate-x-9" : "translate-x-1"
-                                }`}
-                        />
-                    </button>
-                    <span className={`font-medium ${billingPeriod === "yearly" ? "text-slate-900" : "text-slate-400"}`}>
-                        Tahunan
-                    </span>
-                    {billingPeriod === "yearly" && (
-                        <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full">
-                            Hemat 17%
-                        </span>
-                    )}
-                </div>
-
                 {/* Pricing Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
                     {PRICING_TIERS.map((tier, i) => (
                         <div
                             key={i}
                             className={`relative group ${tier.popular ? "md:-mt-4 md:mb-4" : ""}`}
                         >
                             {tier.popular && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg">
-                                    PALING POPULER
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg z-10 w-max">
+                                    PALING HEMAT
                                 </div>
                             )}
                             <div
@@ -179,12 +152,12 @@ export default function PricingPage() {
 
                                 {/* Price */}
                                 <div className="mb-6">
-                                    <div className="flex items-baseline gap-2">
+                                    <div className="flex items-baseline gap-1">
                                         <span className="text-4xl font-black text-slate-900">
-                                            {formatPrice(billingPeriod === "monthly" ? tier.monthlyPrice : tier.yearlyPrice)}
+                                            {formatPrice(tier.price)}
                                         </span>
-                                        {tier.monthlyPrice > 0 && (
-                                            <span className="text-slate-500">/{billingPeriod === "monthly" ? "bulan" : "tahun"}</span>
+                                        {tier.price > 0 && (
+                                            <span className="text-slate-500 text-sm font-medium">{tier.period}</span>
                                         )}
                                     </div>
                                 </div>
