@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, BarChart3, TrendingUp, Wallet, Box, Sparkles, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, TrendingUp, Wallet, Box, Sparkles, ArrowUpRight, ArrowDownRight, HelpCircle, MousePointerClick, LineChart, Search, ShoppingCart, Zap } from "lucide-react";
 
 // Dummy Data for Demo Mode
 const DEMO_STATS = [
@@ -262,6 +262,145 @@ export default function DemoPage() {
                     </div>
                 )}
             </main>
+
+            {/* Explanatory Section */}
+            <section className="bg-white border-t border-slate-200 py-20">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 rounded-full text-sm font-bold mb-4">
+                            <HelpCircle className="w-4 h-4" />
+                            Panduan & Fitur
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                            Bagaimana Cara Kerja <span className="text-indigo-600">Nulls</span>?
+                        </h2>
+                        <p className="text-slate-600 max-w-2xl mx-auto">
+                            Platform ERP modern yang dirancang sesimpel mungkin untuk UMKM, namun cukup powerful untuk skala bisnis besar.
+                        </p>
+                    </div>
+
+                    {/* Step by Step */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-24">
+                        {[
+                            {
+                                step: "01",
+                                title: "Daftar & Setup",
+                                desc: "Buat akun gratis dan atur profil bisnis Anda dalam hitungan menit.",
+                                icon: MousePointerClick
+                            },
+                            {
+                                step: "02",
+                                title: "Input / Import Data",
+                                desc: "Masukkan data produk dan transaksi manual atau import dari Excel.",
+                                icon: Box
+                            },
+                            {
+                                step: "03",
+                                title: "Analisa Dashboard",
+                                desc: "Pantau performa bisnis real-time dari dashboard interaktif.",
+                                icon: BarChart3
+                            },
+                            {
+                                step: "04",
+                                title: "Optimasi dengan AI",
+                                desc: "Gunakan prediksi AI untuk stok dan strategi penjualan.",
+                                icon: Sparkles
+                            }
+                        ].map((item, i) => (
+                            <div key={i} className="relative group">
+                                <div className="hidden md:block absolute top-8 left-1/2 w-full h-0.5 bg-gradient-to-r from-indigo-100 to-transparent -z-10" />
+                                <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+                                    <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 font-bold text-xl mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                                        <item.icon className="w-6 h-6" />
+                                    </div>
+                                    <span className="text-xs font-bold text-indigo-400 mb-2 block">LANGKAH {item.step}</span>
+                                    <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
+                                    <p className="text-sm text-slate-500">{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Features Grid */}
+                    <div className="bg-slate-50 rounded-3xl p-8 md:p-12">
+                        <div className="text-center mb-12">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Jelajahi Fitur Unggulan</h3>
+                            <p className="text-slate-600">Semua yang Anda butuhkan dalam satu platform</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {[
+                                {
+                                    title: "Smart Inventory",
+                                    desc: "Tracking stok otomatis, notifikasi stok rendah, dan manajemen multi-gudang.",
+                                    icon: Box,
+                                    color: "text-blue-600",
+                                    bg: "bg-blue-50"
+                                },
+                                {
+                                    title: "Laporan Keuangan",
+                                    desc: "Laporan laba rugi, arus kas, dan neraca otomatis tanpa perlu akuntan.",
+                                    icon: Wallet,
+                                    color: "text-green-600",
+                                    bg: "bg-green-50"
+                                },
+                                {
+                                    title: "AI Sales Forecast",
+                                    desc: "Prediksi penjualan 7-30 hari ke depan untuk perencanaan belanja stok.",
+                                    icon: LineChart,
+                                    color: "text-purple-600",
+                                    bg: "bg-purple-50"
+                                },
+                                {
+                                    title: "Manajemen Pelanggan",
+                                    desc: "Database pelanggan lengkap dengan riwayat pembelian dan analisis loyalitas.",
+                                    icon: Search,
+                                    color: "text-orange-600",
+                                    bg: "bg-orange-50"
+                                },
+                                {
+                                    title: "Marketing Otomatis",
+                                    desc: "Buat kampanye WhatsApp dan email marketing tertarget dengan bantuan AI.",
+                                    icon: Zap,
+                                    color: "text-pink-600",
+                                    bg: "bg-pink-50"
+                                },
+                                {
+                                    title: "Integrasi Marketplace",
+                                    desc: "Hubungkan Tokopedia, Shopee, dan TikTok Shop dalam satu dashboard.",
+                                    icon: ShoppingCart,
+                                    color: "text-cyan-600",
+                                    bg: "bg-cyan-50"
+                                }
+                            ].map((feature, i) => (
+                                <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all">
+                                    <div className={`w-12 h-12 ${feature.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
+                                        <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-900 mb-1">{feature.title}</h4>
+                                        <p className="text-xs text-slate-500 leading-relaxed">{feature.desc}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Final CTA */}
+                    <div className="mt-16 text-center">
+                        <Link
+                            href="/login"
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white font-bold rounded-full hover:bg-indigo-700 hover:shadow-lg hover:scale-105 transition-all"
+                        >
+                            Coba Sekarang Gratis
+                            <ArrowRight className="w-5 h-5" />
+                        </Link>
+                        <p className="mt-4 text-sm text-slate-500">
+                            Tanpa kartu kredit • Batalkan kapan saja
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
