@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BarChart3, TrendingUp, Wallet, Box, Sparkles, ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 // Dummy Data for Demo Mode
@@ -59,7 +60,16 @@ export default function DemoPage() {
                             <span className="font-medium">Kembali</span>
                         </Link>
                         <div className="h-6 w-px bg-slate-200" />
-                        <h1 className="text-xl font-bold text-slate-900">Demo Dashboard</h1>
+                        <div className="flex items-center gap-3">
+                            <Image
+                                src="/logo.png"
+                                alt="Nulls Logo"
+                                width={32}
+                                height={32}
+                                className="w-8 h-8 object-contain"
+                            />
+                            <h1 className="text-xl font-bold text-slate-900">Demo Dashboard</h1>
+                        </div>
                     </div>
                     <Link href="/login" className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-lg transition-all">
                         Mulai Gratis

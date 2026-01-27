@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { checkIsAdmin } from "@/app/actions/admin";
 
 export default async function AdminLayout({
@@ -18,9 +19,13 @@ export default async function AdminLayout({
             <header className="bg-slate-900/80 backdrop-blur-xl border-b border-white/10 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-orange-500 rounded-xl flex items-center justify-center">
-                            <span className="text-white font-bold text-lg">A</span>
-                        </div>
+                        <Image
+                            src="/logo.png"
+                            alt="Nulls Logo"
+                            width={40}
+                            height={40}
+                            className="w-10 h-10 object-contain"
+                        />
                         <div>
                             <h1 className="text-lg font-bold text-white">Admin Panel</h1>
                             <p className="text-xs text-slate-400">Nulls Management System</p>

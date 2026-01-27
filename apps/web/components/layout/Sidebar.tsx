@@ -1,8 +1,9 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Box, Wallet, Megaphone, Sparkles, Users, BarChart3, House } from 'lucide-react';
+import { Home, Box, Wallet, Megaphone, Users, BarChart3, House } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 const MENU_ITEMS = [
@@ -23,8 +24,14 @@ export function Sidebar() {
             <div className="mb-8">
                 <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl blur-lg opacity-75 animate-glow" />
-                    <div className="relative w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
-                        <Sparkles className="w-6 h-6 text-white" />
+                    <div className="relative w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-xl overflow-hidden">
+                        <Image
+                            src="/logo.png"
+                            alt="Nulls Logo"
+                            width={48}
+                            height={48}
+                            className="w-10 h-10 object-contain"
+                        />
                     </div>
                 </div>
             </div>

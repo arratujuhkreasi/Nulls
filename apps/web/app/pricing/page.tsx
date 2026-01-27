@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Check, X, Star, Zap, Crown, ArrowRight, Sparkles } from "lucide-react";
 
 type BillingPeriod = "monthly" | "yearly";
@@ -90,9 +91,13 @@ export default function PricingPage() {
             <header className="bg-white/80 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
-                            <Sparkles className="w-5 h-5 text-white" />
-                        </div>
+                        <Image
+                            src="/logo.png"
+                            alt="Nulls Logo"
+                            width={40}
+                            height={40}
+                            className="w-10 h-10 object-contain"
+                        />
                         <span className="text-xl font-bold text-slate-900">Nulls</span>
                     </Link>
                     <Link
@@ -188,8 +193,8 @@ export default function PricingPage() {
                                 <Link
                                     href={tier.ctaHref}
                                     className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold transition-all ${tier.popular
-                                            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg"
-                                            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                                        ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg"
+                                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
                                         }`}
                                 >
                                     {tier.cta}
