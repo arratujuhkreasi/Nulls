@@ -321,68 +321,159 @@ export default function DemoPage() {
                         ))}
                     </div>
 
-                    {/* Features Grid */}
-                    <div className="bg-slate-50 rounded-3xl p-8 md:p-12">
-                        <div className="text-center mb-12">
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Jelajahi Fitur Unggulan</h3>
-                            <p className="text-slate-600">Semua yang Anda butuhkan dalam satu platform</p>
+                    {/* Detailed Features Explanation */}
+                    <div className="space-y-20 mb-24">
+                        <div className="text-center mb-16">
+                            <h3 className="text-2xl font-bold text-slate-900 mb-4">Bedah Tuntas Fitur Nulls</h3>
+                            <p className="text-slate-600 max-w-2xl mx-auto">
+                                Kami menyederhanakan sistem ERP perusahaan besar agar mudah digunakan oleh siapa saja, tanpa mengurangi kelengkapan fiturnya.
+                            </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[
-                                {
-                                    title: "Smart Inventory",
-                                    desc: "Tracking stok otomatis, notifikasi stok rendah, dan manajemen multi-gudang.",
-                                    icon: Box,
-                                    color: "text-blue-600",
-                                    bg: "bg-blue-50"
-                                },
-                                {
-                                    title: "Laporan Keuangan",
-                                    desc: "Laporan laba rugi, arus kas, dan neraca otomatis tanpa perlu akuntan.",
-                                    icon: Wallet,
-                                    color: "text-green-600",
-                                    bg: "bg-green-50"
-                                },
-                                {
-                                    title: "AI Sales Forecast",
-                                    desc: "Prediksi penjualan 7-30 hari ke depan untuk perencanaan belanja stok.",
-                                    icon: LineChart,
-                                    color: "text-purple-600",
-                                    bg: "bg-purple-50"
-                                },
-                                {
-                                    title: "Manajemen Pelanggan",
-                                    desc: "Database pelanggan lengkap dengan riwayat pembelian dan analisis loyalitas.",
-                                    icon: Search,
-                                    color: "text-orange-600",
-                                    bg: "bg-orange-50"
-                                },
-                                {
-                                    title: "Marketing Otomatis",
-                                    desc: "Buat kampanye WhatsApp dan email marketing tertarget dengan bantuan AI.",
-                                    icon: Zap,
-                                    color: "text-pink-600",
-                                    bg: "bg-pink-50"
-                                },
-                                {
-                                    title: "Integrasi Marketplace",
-                                    desc: "Hubungkan Tokopedia, Shopee, dan TikTok Shop dalam satu dashboard.",
-                                    icon: ShoppingCart,
-                                    color: "text-cyan-600",
-                                    bg: "bg-cyan-50"
-                                }
-                            ].map((feature, i) => (
-                                <div key={i} className="flex gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all">
-                                    <div className={`w-12 h-12 ${feature.bg} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                                        <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-slate-900 mb-1">{feature.title}</h4>
-                                        <p className="text-xs text-slate-500 leading-relaxed">{feature.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
+                        {/* Feature 1: Inventory */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-blue-600">
+                                <Box className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">Smart Inventory Management</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Lupakan pencatatan stok manual di buku atau Excel yang rawan kesalahan. Nulls mencatat setiap pergerakan barang secara otomatis dan real-time.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                                        <span><strong>Peringatan Stok Rendah:</strong> Dapatkan notifikasi otomatis ke WhatsApp / Email saat stok barang favorit mulai menipis, sehingga Anda tidak pernah kehilangan potensi penjualan.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                                        <span><strong>Riwayat Pergerakan Barang:</strong> Lacak siapa yang mengambil barang, kapan barang masuk, dan ke mana barang keluar (penjualan, retur, atau rusak) untuk meminimalisir kecurangan.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+                                        <span><strong>Support Multi-Gudang & Rak:</strong> Kelola stok di berbagai lokasi (toko cabang, gudang utama) dan ketahui lokasi spesifik barang hingga nomor rak-nya.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Feature 2: Finance */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-green-600">
+                                <Wallet className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">Otomatisasi Laporan Keuangan</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Tidak perlu background akuntansi untuk memiliki pembukuan yang rapi. Setiap transaksi penjualan dan pengeluaran operasional langsung dijurnal otomatis oleh sistem.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                                        <span><strong>Laporan Laba Rugi Real-time:</strong> Pantau keuntungan kotor dan bersih setiap hari, minggu, atau bulan tanpa menunggu tutup buku akhir bulan.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                                        <span><strong>Arus Kas & Neraca:</strong> Pahami kesehatan finansial bisnis Anda dengan laporan Aset, Hutang, dan Modal yang terbentuk otomatis.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                                        <span><strong>Export Pajak Friendly:</strong> Unduh laporan keuangan dalam format Excel/PDF yang sudah disesuaikan untuk kebutuhan pelaporan pajak UMKM.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Feature 3: AI Forecast */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-purple-600">
+                                <LineChart className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">AI Cash Flow & Sales Prediction</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Satu-satunya ERP UMKM dengan kecerdasan buatan (AI) yang mempelajari pola transaksi historis Anda untuk meramal masa depan bisnis.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2" />
+                                        <span><strong>Prediksi Penjualan 30 Hari:</strong> AI kami menggunakan algoritma LSTM (Long Short-Term Memory) untuk memprediksi berapa omzet Anda bulan depan, membantu Anda merencanakan belanja modal.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2" />
+                                        <span><strong>Rekomendasi Restock Cerdas:</strong> Sistem memberi saran jumlah barang yang harus dibeli untuk persiapan season ramai (Lebaran, Natal) berdasarkan tren data tahun lalu.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Feature 4: CRM */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-orange-600">
+                                <Search className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">CRM & Database Pelanggan</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Ubah pembeli sekali menjadi pelanggan setia dengan mengenal mereka lebih dalam. Nulls menyimpan profil lengkap setiap pelanggan Anda.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2" />
+                                        <span><strong>Segmentasi Pelanggan:</strong> Ketahui siapa &quot;Sultan&quot; (belanja banyak), siapa &quot;Loyalis&quot; (sering datang), dan siapa pelanggan yang sudah lama tidak kembali.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2" />
+                                        <span><strong>Riwayat Pembelian & Preferensi:</strong> Intip barang apa yang sering dibeli pelanggan tertentu untuk memberikan rekomendasi yang personal saat mereka datang.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Feature 5: Marketing */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-pink-600">
+                                <Zap className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">Marketing Otomatis</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Jalankan kampanye promosi layaknya brand besar dengan fitur otomasi marketing yang terintegrasi dengan database pelanggan.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-pink-500 mt-2" />
+                                        <span><strong>WhatsApp Broadcast:</strong> Kirim info diskon atau katalog baru ke ribuan pelanggan sekaligus langsung dari dashboard, tanpa perlu simpan nomor satu per satu di HP.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-pink-500 mt-2" />
+                                        <span><strong>Personalisasi Ulang Tahun:</strong> Sistem otomatis mengirimkan ucapan dan voucher diskon khusus saat pelanggan berulang tahun, meningkatkan loyalitas secara drastis.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        {/* Feature 6: Marketplace Integration */}
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                            <div className="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-cyan-600">
+                                <ShoppingCart className="w-8 h-8" />
+                            </div>
+                            <div className="flex-1">
+                                <h4 className="text-xl font-bold text-slate-900 mb-3">Integrasi Marketplace (Omnichannel)</h4>
+                                <p className="text-slate-600 leading-relaxed mb-4">
+                                    Kelola jualan offline (Toko Fisik) dan online (Shopee, Tokopedia, TikTok Shop) dalam satu layar. Tidak perlu lagi buka tutup banyak aplikasi.
+                                </p>
+                                <ul className="space-y-2 text-slate-600">
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2" />
+                                        <span><strong>Sinkronisasi Stok Otomatis:</strong> Saat barang laku di Tokopedia, stok di Shopee dan Toko Fisik otomatis berkurang. Anti overselling dan cancel order.</span>
+                                    </li>
+                                    <li className="flex gap-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2" />
+                                        <span><strong>Upload Produk Sekaligus:</strong> Upload foto dan deskripsi produk sekali saja di Nulls, lalu push ke semua marketplace terhubung dengan satu klik.</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
