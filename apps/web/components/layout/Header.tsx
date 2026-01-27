@@ -11,7 +11,7 @@ export function Header() {
                 </h1>
                 <p className="text-sm text-slate-500 font-medium flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-indigo-500" />
-                    Here's your business overview today
+                    Here&apos;s your business overview today
                 </p>
             </div>
 

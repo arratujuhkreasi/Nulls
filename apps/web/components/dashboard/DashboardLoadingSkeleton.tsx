@@ -1,4 +1,4 @@
-import { DollarSign, Package, Users, BarChart3 } from 'lucide-react';
+
 
 export function DashboardLoadingSkeleton() {
     const skeletonStats = [1, 2, 3, 4];

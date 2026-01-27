@@ -1,6 +1,6 @@
 import makeWASocket, {
     DisconnectReason,
-    useMultiFileAuthState,
+    useMultiFileAuthState as makeMultiFileAuthState,
     fetchLatestBaileysVersion,
     makeCacheableSignalKeyStore,
     Browsers,
@@ -15,7 +15,7 @@ const logger = pino({ level: 'silent' }); // Set to 'debug' for debugging
 
 export async function initWhatsAppClient() {
     const authPath = path.join(process.cwd(), 'auth_info_baileys');
-    const { state, saveCreds } = await useMultiFileAuthState(authPath);
+    const { state, saveCreds } = await makeMultiFileAuthState(authPath);
 
     const { version } = await fetchLatestBaileysVersion();
 
@@ -32,7 +32,8 @@ export async function initWhatsAppClient() {
     });
 
     // Handle connection updates
-    sock.ev.on('connection.update', async (update) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sock.ev.on('connection.update', async (update: any) => {
         const { connection, lastDisconnect, qr } = update;
 
         if (qr) {
@@ -63,7 +64,8 @@ export async function initWhatsAppClient() {
     sock.ev.on('creds.update', saveCreds);
 
     // Handle incoming messages
-    sock.ev.on('messages.upsert', async ({ messages, type }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    sock.ev.on('messages.upsert', async ({ messages, type }: any) => {
         if (type !== 'notify') return;
 
         for (const msg of messages) {
@@ -121,6 +123,7 @@ export async function sendMessageWithButtons(to: string, message: string, button
         headerType: 1,
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await sock.sendMessage(formattedNumber, buttonMessage as any);
 }
 

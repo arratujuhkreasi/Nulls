@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Edit2, Trash2, Plus, Box, Ban } from "lucide-react";
+import { Edit2, Trash2, Plus, Box } from "lucide-react";
 import { ProductModal } from "./ProductModal";
 import { deleteProduct } from "@/app/actions/inventory";
 

@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<Props, State> {
                         </h1>
 
                         <p className="text-gray-600 mb-1">
-                            We're sorry for the inconvenience.
+                            We&apos;re sorry for the inconvenience.
                         </p>
 
                         {this.state.error && (

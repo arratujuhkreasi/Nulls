@@ -1,8 +1,7 @@
 import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import Link from "next/link";
-import { Lock, ArrowRight, Loader2, Mail } from "lucide-react";
+import { Lock } from "lucide-react";
 
 export default function LoginPage({
     searchParams,

@@ -17,6 +17,7 @@ export async function sendWhatsAppMessage(to: string, message: string) {
         }
 
         return { success: true };
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         return { error: error.message || 'Terjadi kesalahan' };
     }
@@ -39,6 +40,7 @@ export async function broadcastWhatsAppMessage(message: string, customerIds?: st
         }
 
         return data;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         return { error: error.message || 'Terjadi kesalahan' };
     }
@@ -49,12 +51,13 @@ export async function getWhatsAppStatus() {
         const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/whatsapp/status`);
         const data = await response.json();
         return data;
-    } catch (error) {
+    } catch (_error) {
         return { connected: false, error: 'Gagal mengecek status' };
     }
 }
 
 // Helper: Send order confirmation
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function sendOrderConfirmation(orderId: string, customerPhone: string, orderDetails: any) {
     const message = `
 ✅ *Pesanan Baru Diterima!*
@@ -62,7 +65,7 @@ export async function sendOrderConfirmation(orderId: string, customerPhone: stri
 📦 Order ID: #${orderId}
 💰 Total: ${new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(orderDetails.total)}
 
-${orderDetails.items?.map((item: any) => `• ${item.name} (${item.quantity}x)`).join('\n')}
+${orderDetails.items?.map((item: { name: string; quantity: number }) => `• ${item.name} (${item.quantity}x)`).join('\n')}
 
 Terima kasih telah berbelanja! 🙏
 Pesanan Anda sedang diproses.

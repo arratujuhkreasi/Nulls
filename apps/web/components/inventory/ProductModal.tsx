@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { X, Save, Loader2 } from "lucide-react";
 import { createProduct, updateProduct } from "@/app/actions/inventory";
 

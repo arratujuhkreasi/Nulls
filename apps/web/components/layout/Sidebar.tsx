@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Box, DollarSign, Wallet, Megaphone, Sparkles, Users, BarChart3 } from 'lucide-react';
+import { Home, Box, Wallet, Megaphone, Sparkles, Users, BarChart3, House } from 'lucide-react';
 import { twMerge } from 'tailwind-merge';
 
 const MENU_ITEMS = [
@@ -26,6 +26,22 @@ export function Sidebar() {
                     <div className="relative w-12 h-12 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
                         <Sparkles className="w-6 h-6 text-white" />
                     </div>
+                </div>
+            </div>
+
+            {/* Home button */}
+            <div className="mb-4 relative group">
+                <Link
+                    href="/"
+                    className="relative flex items-center justify-center w-14 h-14 rounded-2xl transition-all duration-300 text-slate-400 hover:bg-slate-50 hover:text-indigo-600 hover:scale-105"
+                >
+                    <House className="w-6 h-6 transition-transform group-hover:scale-110" />
+                </Link>
+
+                {/* Tooltip */}
+                <div className="absolute left-20 top-1/2 -translate-y-1/2 px-3 py-2 bg-slate-900 text-white text-xs rounded-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50 shadow-lg">
+                    Ke Landing Page
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-slate-900 rotate-45" />
                 </div>
             </div>
 

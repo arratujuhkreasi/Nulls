@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Validate environment variables on startup (will throw if invalid)

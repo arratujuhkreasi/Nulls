@@ -2,16 +2,18 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# Install git (required for some npm packages)
+RUN apk add --no-cache git
+
 # Install dependencies
-COPY apps/web/package*.json ./
+COPY package*.json ./
 RUN npm install
 
-# Copy necessary source code
-COPY apps/web/lib ./lib
-COPY apps/web/scripts ./scripts
-COPY apps/web/app/actions ./app/actions
-COPY apps/web/utils ./utils
-COPY apps/web/tsconfig.json ./tsconfig.json
+# Copy necessary source code (files are in root, not in apps/web/)
+COPY lib ./lib
+COPY scripts ./scripts
+COPY app ./app
+COPY utils ./utils
 
 # Install tsx globally for running TypeScript
 RUN npm install -g tsx

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BarChart3, Megaphone, Zap, Warehouse, Globe, CheckCircle2, Sparkles, PieChart, TrendingUp } from "lucide-react";
+import { ArrowRight, BarChart3, Zap, Warehouse, Globe, CheckCircle2, Sparkles, TrendingUp } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -13,41 +13,8 @@ export default function LandingPage() {
         <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-pink-200/20 rounded-full blur-3xl animate-float animation-delay-400" />
       </div>
 
-      {/* Navbar */}
-      <nav className="fixed w-full z-50 top-6 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
-            <div className="flex items-center gap-2.5 font-bold text-xl tracking-tight">
-              <Image
-                src="/logo.png"
-                alt="Nulls Logo"
-                width={100}
-                height={32}
-                className="h-8 w-auto object-contain"
-                priority
-              />
-            </div>
-
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-              <Link href="#apps" className="hover:text-indigo-600 transition-colors">Aplikasi</Link>
-              <Link href="#features" className="hover:text-indigo-600 transition-colors">Fitur AI</Link>
-              <Link href="#pricing" className="hover:text-indigo-600 transition-colors">Harga</Link>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Link href="/login" className="px-5 py-2 text-sm font-semibold text-slate-600 hover:text-indigo-600 transition-colors">
-                Masuk
-              </Link>
-              <Link href="/login" className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-semibold rounded-full transition-all shadow-lg hover:shadow-xl active:scale-95">
-                Coba Gratis
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 px-6 z-10">
+      <section className="relative pt-20 pb-20 px-6 z-10">
         <div className="max-w-6xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm border border-indigo-100/50 rounded-full mb-8 shadow-sm animate-slide-up">

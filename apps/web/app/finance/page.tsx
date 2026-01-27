@@ -1,6 +1,5 @@
 import { getFinancialSummary, getExpenses } from "@/app/actions/finance";
-import { ExpenseModal } from "@/components/finance/ExpenseModal";
-import { Plus, TrendingUp, TrendingDown, DollarSign, Wallet } from "lucide-react";
+import { TrendingUp, TrendingDown, DollarSign, Wallet } from "lucide-react";
 import FinanceClientWrapper from "@/components/finance/FinanceClientWrapper";
 import { BackButton } from "@/components/ui/BackButton";
 

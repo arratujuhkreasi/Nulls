@@ -12,6 +12,7 @@ interface SalesChartProps {
 
 export function SalesChart({ subscriptionPlan, timeFrame = 'monthly' }: SalesChartProps) {
     const isPro = subscriptionPlan !== 'free';
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {
@@ -128,6 +129,7 @@ export function SalesChart({ subscriptionPlan, timeFrame = 'monthly' }: SalesCha
                     />
                     <Tooltip
                         contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         formatter={(value: any) => [`$${Number(value).toFixed(0)}`, 'Sales']}
                     />
 
