@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, BarChart3, Zap, Warehouse, Globe, CheckCircle2, Sparkles, TrendingUp } from "lucide-react";
+import { ArrowRight, BarChart3, Zap, Warehouse, CheckCircle2, Sparkles, TrendingUp } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -129,19 +129,7 @@ export default function LandingPage() {
               </div>
             </Link>
 
-            {/* Card: Website Store */}
-            <Link href="/" className="group h-72 bg-white/80 backdrop-blur-sm rounded-[2.5rem] border border-slate-100 shadow-lg hover:shadow-2xl p-8 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2">
-              <div>
-                <div className="w-14 h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                  <Globe className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">Website Toko</h3>
-                <p className="text-slate-600 text-sm">Website e-commerce instan untuk brand Anda dalam hitungan menit.</p>
-              </div>
-              <div className="flex items-center gap-2 text-pink-600 font-bold text-sm group-hover:gap-4 transition-all">
-                Kelola Web <ArrowRight className="w-4 h-4" />
-              </div>
-            </Link>
+
 
           </div>
         </div>
