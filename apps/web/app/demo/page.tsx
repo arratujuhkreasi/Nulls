@@ -453,28 +453,7 @@ export default function DemoPage() {
                             </div>
                         </div>
 
-                        {/* Feature 6: Marketplace Integration */}
-                        <div className="flex flex-col md:flex-row gap-8 items-start">
-                            <div className="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-cyan-600">
-                                <ShoppingCart className="w-8 h-8" />
-                            </div>
-                            <div className="flex-1">
-                                <h4 className="text-xl font-bold text-slate-900 mb-3">Integrasi Marketplace (Omnichannel)</h4>
-                                <p className="text-slate-600 leading-relaxed mb-4">
-                                    Kelola jualan offline (Toko Fisik) dan online (Shopee, Tokopedia, TikTok Shop) dalam satu layar. Tidak perlu lagi buka tutup banyak aplikasi.
-                                </p>
-                                <ul className="space-y-2 text-slate-600">
-                                    <li className="flex gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2" />
-                                        <span><strong>Sinkronisasi Stok Otomatis:</strong> Saat barang laku di Tokopedia, stok di Shopee dan Toko Fisik otomatis berkurang. Anti overselling dan cancel order.</span>
-                                    </li>
-                                    <li className="flex gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-cyan-500 mt-2" />
-                                        <span><strong>Upload Produk Sekaligus:</strong> Upload foto dan deskripsi produk sekali saja di Nulls, lalu push ke semua marketplace terhubung dengan satu klik.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
 
                     {/* Final CTA */}
