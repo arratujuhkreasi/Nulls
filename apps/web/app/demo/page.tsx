@@ -129,17 +129,23 @@ export default function DemoPage() {
                                         Akurasi 94%
                                     </div>
                                 </div>
-                                <div className="flex items-end gap-4 h-48">
-                                    {DEMO_FORECAST.map((item, i) => (
-                                        <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                                            <div
-                                                className={`w-full rounded-t-lg transition-all hover:opacity-80 ${i === 5 ? "bg-gradient-to-t from-indigo-500 to-purple-500" : "bg-gradient-to-t from-indigo-200 to-indigo-400"
-                                                    }`}
-                                                style={{ height: `${(item.value / 12000000) * 100}%` }}
-                                            />
-                                            <span className="text-xs font-medium text-slate-600">{item.day}</span>
-                                        </div>
-                                    ))}
+                                <div className="flex items-end gap-3 h-48 pt-4">
+                                    {DEMO_FORECAST.map((item, i) => {
+                                        const maxValue = 12000000;
+                                        const heightPercent = Math.round((item.value / maxValue) * 100);
+                                        return (
+                                            <div key={i} className="flex-1 flex flex-col items-center justify-end h-full">
+                                                <div className="w-full flex flex-col items-center justify-end" style={{ height: '160px' }}>
+                                                    <div
+                                                        className={`w-full rounded-t-lg transition-all hover:opacity-80 ${i === 5 ? "bg-gradient-to-t from-indigo-500 to-purple-500" : "bg-gradient-to-t from-indigo-200 to-indigo-400"
+                                                            }`}
+                                                        style={{ height: `${heightPercent}%`, minHeight: '20px' }}
+                                                    />
+                                                </div>
+                                                <span className="text-xs font-medium text-slate-600 mt-2">{item.day}</span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
 
