@@ -1,11 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Check, X, Star, Zap, Crown, ArrowRight, Sparkles } from "lucide-react";
-
-type BillingPeriod = "monthly" | "yearly";
 
 const PRICING_TIERS = [
     {
@@ -21,6 +18,7 @@ const PRICING_TIERS = [
             { name: "Tracking Produk", included: true, detail: "10 produk" },
             { name: "Database Customer", included: true, detail: "50 customer" },
             { name: "AI Sales Prediction", included: false },
+            { name: "Export Laporan", included: false },
             { name: "WhatsApp Integration", included: false },
             { name: "Priority Support", included: false },
         ],
@@ -40,6 +38,7 @@ const PRICING_TIERS = [
             { name: "Tracking Produk", included: true, detail: "Unlimited" },
             { name: "Database Customer", included: true, detail: "Unlimited" },
             { name: "AI Sales Prediction", included: true, detail: "30 hari" },
+            { name: "Export Laporan", included: true, detail: "PDF + Excel" },
             { name: "WhatsApp Integration", included: true, detail: "Broadcast" },
             { name: "Priority Support", included: true, detail: "WhatsApp 24/7" },
         ],
@@ -59,6 +58,7 @@ const PRICING_TIERS = [
             { name: "Tracking Produk", included: true, detail: "Unlimited" },
             { name: "Database Customer", included: true, detail: "Unlimited" },
             { name: "AI Sales Prediction", included: true, detail: "30 hari" },
+            { name: "Export Laporan", included: true, detail: "PDF + Excel" },
             { name: "WhatsApp Integration", included: true, detail: "Broadcast" },
             { name: "Priority Support", included: true, detail: "WhatsApp 24/7" },
         ],

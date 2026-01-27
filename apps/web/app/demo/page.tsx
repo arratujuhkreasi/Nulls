@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, BarChart3, TrendingUp, Wallet, Box, Sparkles, ArrowUpRight, ArrowDownRight, HelpCircle, MousePointerClick, LineChart, Search, ShoppingCart, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, BarChart3, TrendingUp, Wallet, Box, Sparkles, ArrowUpRight, ArrowDownRight, HelpCircle, MousePointerClick, LineChart, Search, Zap } from "lucide-react";
 
 // Dummy Data for Demo Mode
 const DEMO_STATS = [

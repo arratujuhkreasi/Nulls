@@ -1,6 +1,7 @@
 import { getFinancialSummary, getExpenses } from "@/app/actions/finance";
 import { TrendingUp, TrendingDown, DollarSign, Wallet } from "lucide-react";
 import FinanceClientWrapper from "@/components/finance/FinanceClientWrapper";
+import ExportButtons from "@/components/finance/ExportButtons";
 import { BackButton } from "@/components/ui/BackButton";
 
 export default async function FinancePage() {
@@ -17,7 +18,10 @@ export default async function FinancePage() {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">Ringkasan Keuangan</h1>
                     <p className="text-gray-500">Lacak profitabilitas bisnis Anda secara real-time.</p>
                 </div>
-                <FinanceClientWrapper />
+                <div className="flex items-center gap-3">
+                    <ExportButtons summary={summary} expenses={expenses} />
+                    <FinanceClientWrapper />
+                </div>
             </div>
 
             {/* Widgets */}
