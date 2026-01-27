@@ -51,6 +51,11 @@ export default function LandingPage() {
               <span>Lihat Demo Dulu</span>
             </Link>
 
+            <Link href="/pricing" className="h-14 w-full md:w-auto px-8 text-indigo-600 hover:text-indigo-700 font-semibold rounded-full transition-all flex items-center justify-center gap-2 text-lg hover:bg-indigo-50">
+              Lihat Harga
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+
           </div>
 
           {/* Bento Grid Apps */}
